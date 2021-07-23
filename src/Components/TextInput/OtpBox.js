@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextInput, View, Text, StyleSheet } from 'react-native';
-import Colors from '../../module/utils/Colors';
-import CutomButton from '../Button/Button';
+import Colors from '../Colors';
 
 const OtpBoxComponent = (props) => {
     return (

@@ -7,8 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import SignUp from '../screens/SignUp';
 import CustomDrawerContentComponent from './CustomDrawer';
+import Profile from '../screens/Profile';
 const Drawer = createDrawerNavigator();
-
 const Stack = createStackNavigator();
 function NoauthStack() {
    const MainDrawer = () => {
@@ -25,7 +25,7 @@ function NoauthStack() {
             drawerContent={props => <CustomDrawerContentComponent {...props} />}>
             <Drawer.Screen name="home" component={HomeScreen} />
             <Drawer.Screen name="login" component={Login} />
-            <Stack.Screen name="signup" component={SignUp} /> 
+            <Drawer.Screen name="profile" component={Profile} /> 
         
           </Drawer.Navigator>
         );

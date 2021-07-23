@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
-import Colors from '../../module/utils/Colors';
+import Colors from '../Colors'
 
 export default class Button extends Component {
   constructor(props) {

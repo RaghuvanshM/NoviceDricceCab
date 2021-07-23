@@ -6,9 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import Colors from '../../module/utils/Colors';
+import Colors from '../Colors';
 import CutomButton from '../Button/Button';
-import Iconlist from '../../module/utils/icon';
+import Iconlist from '../icon'
 import Icon from 'react-native-vector-icons/Entypo';
 
 const TextBoxComponent = props => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Colors from '../../module/utils/Colors';
+import Colors from '../Colors';
 
 const TextBoxLabel = (props) => {
     return (

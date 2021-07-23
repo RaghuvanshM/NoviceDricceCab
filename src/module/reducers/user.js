@@ -5,7 +5,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  isAuth:true,
+  isAuth:false,
   profile: '',
   phonenumber: '',
   currentAddress: '',
