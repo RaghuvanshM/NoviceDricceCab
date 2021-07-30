@@ -20,6 +20,10 @@ const TextBoxComponent = props => {
         keyboardType={props.keyboardType}
         onFocus={props.onFocus}
         value={props.value}
+        keyboardType={props.keyboardType}
+        maxLength={props.maxLength}
+        onChangeText={props.onChangeText}
+        secureTextEntry={props.secureTextEntry}
       />
       {props.isicon ? (
         <TouchableOpacity style={{justifyContent: 'center'}}

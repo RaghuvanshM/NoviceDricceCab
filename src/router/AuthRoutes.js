@@ -15,6 +15,9 @@ import AadharPhoto from '../screens/DocumentScreen/AadharPhoto';
 import CabPhoto from '../screens/DocumentScreen/CabPhoto';
 import VideoUpload from '../screens/DocumentScreen/VideoUpload';
 import Profile from '../screens/Profile';
+import VerifyEmail from '../screens/VerifyEmail';
+import EnterCode from '../screens/EnterCode';
+import ResetPassword from '../screens/ResetPassword';
 const Stack = createStackNavigator();
 function authStack() {
     return (
@@ -35,6 +38,11 @@ function authStack() {
                 <Stack.Screen name="otpscreen" component={OtpScreen} />
                 <Stack.Screen name="loginscreen" component={Login} />
                 <Stack.Screen name="signupScreen" component={Signup} />
+                <Stack.Screen name="verify" component={VerifyEmail} />
+                <Stack.Screen name="enterotp" component={EnterCode} />
+                <Stack.Screen name="updatepass" component={ResetPassword} />
+
+
           
                 {/* <Stack.Screen name="studentSignupScreen" component={StudentSignup} options={{headerShown:false}} />
             <Stack.Screen name="linkAccountScreen" component={LinkAccount} options={{headerShown:false}} />

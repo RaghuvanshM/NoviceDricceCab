@@ -1,0 +1,1 @@
+export const mobileNumber =/^[789]\d{9}$/

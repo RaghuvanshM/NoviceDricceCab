@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useRef } from 'react';
 import {
   Text,
   View,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { getPhoneNumber } from '../module/selectors';
+import { getPhoneNumber, getPhoneNumberdata } from '../module/selectors';
 import { useSelector } from 'react-redux';
 import Iconlist from '../Components/icon';
 import Allimage from '../Constants/image';
@@ -19,10 +19,12 @@ import CustomTextInput from '../Components/TextInput/OtpBox';
 import CustomTextBoxLabel from '../Components/Label/TextBoxLabel';
 import CutomButton from '../Components/Button/Button';
 const OtpScreen = () => {
-  const [otpverify, setOTP] = useState('');
+  const [otp1, setOtp1] = useState('');
+  const [otp2, setOtp2] = useState('');
+  const [otp3, setOtp3] = useState('');
+  const [otp4, setOtp4] = useState('');
   const navigation = useNavigation();
-  const phonenumber = useSelector(getPhoneNumber);
-
+  const phonenumber = useSelector(getPhoneNumberdata);
   const confirmVerificationCode = () => {
     if (phonenumber.otp == otpverify) {
       showMessage({
@@ -38,6 +40,11 @@ const OtpScreen = () => {
       });
     }
   };
+  const onsubmit = () => {
+   if(parseInt(otp1+otp2+otp3+otp4)===phonenumber.payload.otp){
+     navigation.navigate('uploaddoc')
+   }
+  }
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <TouchableOpacity
@@ -54,16 +61,24 @@ const OtpScreen = () => {
           style={{ height: '40%', width: '90%' }}
         />
         <Text style={styles.mobiletext}>OTP VERIFICATION</Text>
-        <Text style={styles.otpText}>Enter OTP sent to +917895769455</Text>
+        <Text style={styles.otpText}>{`Enter OTP sent to +91-${phonenumber.payload.phonenumber}`}</Text>
       </View>
       <View style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-          <CustomTextInput placeholder={''} keyboardType={'number-pad'} />
-          <CustomTextInput placeholder={''} keyboardType={'number-pad'} />
-          <CustomTextInput placeholder={''} keyboardType={'number-pad'} />
+          <CustomTextInput
+            placeholder={''} keyboardType={'number-pad'}
+            onChangeText={text => setOtp1(text)}
+          />
+          <CustomTextInput
+            placeholder={''} keyboardType={'number-pad'}
+            onChangeText={text => setOtp2(text)}
+          />
+          <CustomTextInput
+            placeholder={''} keyboardType={'number-pad'}
+            onChangeText={text => setOtp3(text)}
+          />
           <CustomTextInput placeholder={''} keyboardType={'number-pad'}
-
-
+            onChangeText={text => setOtp4(text)}
           />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'center', margin: '5%' }}>
@@ -71,10 +86,9 @@ const OtpScreen = () => {
           <TouchableOpacity><Text style={styles.resendotp}>Resend OTP </Text></TouchableOpacity>
         </View>
         <View>
-          <CutomButton title={'Submit'} 
-          textStyle={styles.buttontext}
-          onPress={()=>{navigation.navigate('registration')}}
-
+          <CutomButton title={'Submit'}
+            textStyle={styles.buttontext}
+            onPress={() => { onsubmit() }}
           />
         </View>
       </View>

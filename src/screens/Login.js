@@ -5,65 +5,31 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { useDispatch } from 'react-redux';
-import { authUser } from '../module/actions';
+import { authUser, signUpUser } from '../module/actions';
 import CutomButton from '../Components/Button/Button';
 import CustomTextInput from '../Components/TextInput/TextBox';
 import CustomTextBoxLabel from '../Components/Label/TextBoxLabel'
 import Colors from '../Components/Colors';
 import Iconlist from '../Components/icon'
+import Geolocation from '@react-native-community/geolocation';
+import { WebView } from 'react-native-webview';
+
 import images from '../Constants/image'
+import { currentLocation } from '../module/utils/Apis/currentLatLong'
 const LoginScreen = ({ props }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
-  const onLoginPress = () => {
-    dispatch(authUser(true))
+  const onLoginPress = async () => {
+    await Geolocation.getCurrentPosition(info => {
+      console.log(info)
+      console.log('hell world')
+    })
+    console.log('out side await')
+  }
+ const onReset=()=>{
+  navigation.navigate('verify')
   }
   return (
-    // <View style={styles.loginview}>
-
-    //   <TouchableOpacity
-    //     onPress={() => {
-    //       navigation.goBack();
-    //     }}>
-    //     <View style={{padding: 10}}>
-    //       <Icon name="arrowleft" size={30} color="black" />
-    //     </View>
-    //   </TouchableOpacity>
-    //   <Text style={{fontSize: 20, alignSelf: 'center', color: '#343a40'}}>
-    //     {' '}
-    //     Member Login{' '}
-    //   </Text>
-    //   <CustomTextInput />
-    //   <View style={styles.loginview}>
-    //     <View style={styles.singletextinput}>
-    //       <TextInput
-    //         label="Email"
-    //         onChangeText={text => {
-    //           setEmail(text);
-    //         }}
-    //       />
-    //     </View>
-
-    //     <View style={styles.singletextinput}>
-    //       <TextInput
-    //         label="Password"
-    //         onChangeText={text => {
-    //           setPassword(text);
-    //         }}
-    //       />
-    //     </View>
-    //     {/* <TouchableOpacity
-    //       onPress={loginButtonClick}
-    //       >
-    //         <LinearGradient
-    //           colors={['#e83e8c', '#e83e8c', '#e83e8c']}
-    //           style={styles.linearGradient}>
-    //           <Text style={styles.buttonText}>Login Now</Text>
-    //         </LinearGradient>
-    //       </TouchableOpacity> *parrentloginiamgetton.Color.Dark}
-    //     />
-    //   </View>
-    // </View>
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
     >
@@ -112,9 +78,13 @@ const LoginScreen = ({ props }) => {
           <Text style={styles.forgetpasstext}>
             Forget Password?
           </Text>
-          <Text style={styles.resettext}>
-            Reset here
-          </Text>
+          <TouchableOpacity
+          onPress={()=>onReset()}
+          >
+            <Text style={styles.resettext}>
+              Reset here
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -124,26 +94,6 @@ const LoginScreen = ({ props }) => {
 
 export default LoginScreen;
 const styles = StyleSheet.create({
-  loginview: {
-    flex: 1,
-  },
-
-  loginview: { justifyContent: 'center', flex: 1, alignSelf: 'center' },
-  buttonText: {
-    fontSize: 18,
-    fontFamily: 'Gill Sans',
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-  },
-
-  googleloginbutton: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginBottom: '3%',
-    flex: 1
-  },
   buttontext: {
     fontSize: 20,
     color: 'white',

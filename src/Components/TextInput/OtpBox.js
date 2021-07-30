@@ -1,15 +1,18 @@
-import React from 'react';
+import React  from  'react';
 import { TextInput, View, Text, StyleSheet } from 'react-native';
 import Colors from '../Colors';
 
 const OtpBoxComponent = (props) => {
+
     return (
         <View style={styles.textinputview}>
             <TextInput
                 placeholder={props.placeholder}
+                ref={props.ref}
                 style={styles.textinput}
                 keyboardType={props.keyboardType}
                 onChangeText={props.onChangeText}
+                maxLength={1}
             />
         </View>
     );
@@ -27,5 +30,6 @@ const styles = StyleSheet.create({
     },
     textinput: {
         fontSize: 18,
+        alignSelf:'center'
     },
 });

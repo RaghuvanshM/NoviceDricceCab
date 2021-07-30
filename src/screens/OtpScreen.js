@@ -9,7 +9,7 @@ import {
   ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { phoneAuth, sendOtp } from '../module/actions';
+import { mobileAuth, phoneAuth, sendOtp } from '../module/actions';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
@@ -19,24 +19,47 @@ import CustomTextBoxLabel from '../Components/Label/TextBoxLabel'
 import CutomButton from '../Components/Button/Button';
 import images from '../Constants/image';
 import Colors from '../Components/Colors';
+import { mobileNumber } from '../Constants/appConstant';
+import Toast from 'react-native-toast-message';
+import { getPhoneNumber, getPhoneNumberdata } from '../module/selectors';
 
 const OtpScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const phonedata = useSelector(getPhoneNumberdata)
+  console.log(phonedata)
   const [phone, setPhone] = useState('');
   // useEffect(() => {
   //   dispatch(phoneAuth);
   // }, [dispatch]);
 
   const validatePhone = () => {
-    return Appconstant.phoneregx.test(phone);
+    return mobileNumber.test(phone);
   };
   const sendOtpbuttoncall = async () => {
-    navigation.navigate('otpverificatonscreen')
+
+    if (validatePhone()) {
+      var val = await Math.floor(1000 + Math.random() * 9000);
+      let data = { phonenumber: phone, otp: val }
+      console.log(phonedata.response)
+      dispatch(mobileAuth(data))
+      if(phonedata.response.Status==='Success'){
+        navigation.navigate('otpverificatonscreen')
+      }
+    }
+    else {
+      Toast.show({
+        type: 'error',
+        text1:  'Enter Correct Mobile Number',
+        visibilityTime: 30000,
+        position: 'bottom',
+      });
+    }
+
+    // navigation.navigate('otpverificatonscreen')
     // try {
     //   if (validatePhone()) {
     //     var val = await Math.floor(1000 + Math.random() * 9000);
-
     //     const url = `http://2factor.in/API/V1/fce9a032-d8c4-11eb-8089-0200cd936042/SMS/${phone}/${val}`;
     //     await fetch(url, {
     //       method: 'GET',
@@ -62,7 +85,7 @@ const OtpScreen = () => {
     // }
   };
   return (
-    <ScrollView contentContainerStyle ={{ flexGrow: 1, justifyContent: 'center' }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
       <TouchableOpacity style={{ flex: 0.3 }}
         onPress={() => { navigation.goBack() }}
       >
@@ -73,12 +96,12 @@ const OtpScreen = () => {
         />
       </TouchableOpacity>
       <View
-    style={{flex:1,justifyContent:'center',alignItems:'center'}}
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
       >
         <Image
           source={images.mobilephone}
           resizeMode='contain'
-          style={{height:'40%',width:'90%'}}
+          style={{ height: '40%', width: '90%' }}
         />
         <Text style={styles.mobiletext}>Enter Your Mobile Number</Text>
         <Text style={styles.otpText}>We will send you a OTP Verification</Text>
@@ -92,6 +115,8 @@ const OtpScreen = () => {
         <CustomTextInput
           placeholder={'Phone Number'}
           keyboardType={'number-pad'}
+          maxLength={10}
+          onChangeText={text => setPhone(text)}
         />
         <View>
           <CutomButton
@@ -129,15 +154,15 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
   },
-  mobiletext:{
-    fontSize:18,
-    fontFamily:'OpenSans-Light',
-    margin:'2%'
+  mobiletext: {
+    fontSize: 18,
+    fontFamily: 'OpenSans-Light',
+    margin: '2%'
   },
-  otpText:{
+  otpText: {
     fontSize: 18,
     color: Colors.forgetPassowrdcolor,
     fontFamily: 'OpenSans-Bold'
   }
-  
+
 });

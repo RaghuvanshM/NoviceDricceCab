@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { phoneAuth } from '../module/actions';

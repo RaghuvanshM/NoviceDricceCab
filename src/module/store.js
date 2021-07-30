@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import AsyncStorage from '@react-native-community/async-storage';
 import {persistReducer} from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
+import rootSaga from './saga';
 
 const rootReducer = combineReducers(reducers);
 const sagaMiddleware = createSagaMiddleware();
@@ -19,3 +20,4 @@ export const Store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware), applyMiddleware(thunk)),
 );
 
+sagaMiddleware.run(rootSaga);

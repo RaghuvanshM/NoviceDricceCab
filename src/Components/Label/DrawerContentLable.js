@@ -4,7 +4,7 @@ const DrawerContent = (props) => {
     return (
         <TouchableOpacity
         style={{margin:'3%'}}
-        
+        onPress ={props.onPress}
         >
             <Text style={styles.contentext}>{props.title} </Text>
         </TouchableOpacity>

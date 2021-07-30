@@ -7,14 +7,16 @@ import iconlist from '../Components/icon';
 import DrawerContentText from '../Components/Label/DrawerContentLable';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from '../module/selectors';
+import { signOutUser } from '../module/actions';
 
 const CustomeContent = (props) => {
     const navigation = useNavigation();
-  
-   
+   const dispatch = useDispatch()
+  const onSignOutPress=()=>{
+      dispatch(signOutUser())
+   }
     return (
         <SafeAreaView style={{ flex: 1 }}>
-
             <Pressable style={{ flex: 0.3, backgroundColor: Colors.sidbardbackgroundcolor }}
            onPress={()=>{navigation.navigate('profile')}}
             >
@@ -72,7 +74,10 @@ const CustomeContent = (props) => {
                 title={'Last booking'}
 
             />
-        
+           <DrawerContentText
+                title={'Log Out'}
+                onPress={()=>{onSignOutPress()}}
+            />
         </SafeAreaView>
     )
 }

@@ -1,19 +1,47 @@
-import React, { Component, useEffect, useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Button, Image, ScrollView } from 'react-native';
+import React, { Component, Fragment, useEffect, useState } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, Button, Image, ScrollView,ActivityIndicator } from 'react-native';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
-
-import { useDispatch } from 'react-redux';
-import { authUser } from '../module/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { authUser, buttonClick, cabinfo } from '../module/actions';
 import CutomButton from '../Components/Button/Button';
 import CustomTextInput from '../Components/TextInput/TextBox';
 import CustomTextBoxLabel from '../Components/Label/TextBoxLabel'
 import Colors from '../Components/Colors';
 import Iconlist from '../Components/icon'
 import images from '../Constants/image'
+import { getButtonClick, getdriverId } from '../module/selectors/user';
 const CabDetail = ({ props }) => {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+    const isclick = useSelector(getButtonClick)
+    console.log(isclick)
+    // const id_driver = useSelector(getdriverId)
+
+     //id_driver
+    const [ type_of_vechile, setTypeofVechile] = useState('')
+    const [sheets, setSheets] = useState('')
+    const [vechile_rc, setVechile_rc] = useState('')
+    const [vechile_number, setVechile_number] = useState('')
+    const [available_vans, setAvailable_vans] = useState('')
+    const [car_model, setCar_model] = useState('')
+    const onPressSaveButton=()=>{
+     
+    dispatch(buttonClick())
+     dispatch(cabinfo(
+         {  // const id_driver = useSelector(getdriverId)
+            id_driver:38,
+            type_of_vechile,
+             sheets,
+             vechile_rc,
+             vechile_number,
+             available_vans,
+             car_model
+        }
+     ))
+     navigation.navigate('uploaddoc')
+    }
     return (
         // <View style={styles.loginview}>
 
@@ -60,6 +88,20 @@ const CabDetail = ({ props }) => {
         //     />
         //   </View>
         // </View>
+        <Fragment>
+            {isclick && (
+                <View
+                    style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(3,3,3, 0.8)',
+                        zIndex: 10,
+                    }}>
+                    <ActivityIndicator size="large" color="#fff" />
+                </View>
+            )}
         <ScrollView
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
         >
@@ -87,6 +129,7 @@ const CabDetail = ({ props }) => {
                 </View>
                 <CustomTextInput
                     placeholder={'Ex Mini Van'}
+                    onChangeText={text => setTypeofVechile(text)}
                 />
                 <View style={{ width: '90%', alignSelf: 'center' }}>
                     <CustomTextBoxLabel
@@ -95,6 +138,7 @@ const CabDetail = ({ props }) => {
                 </View>
                 <CustomTextInput
                     placeholder={'No of sheets in vechile '}
+                    onChangeText={text => setSheets(text)}
                 />
                 <View style={{ width: '90%', alignSelf: 'center' }}>
                     <CustomTextBoxLabel
@@ -103,6 +147,7 @@ const CabDetail = ({ props }) => {
                 </View>
                 <CustomTextInput
                     placeholder={'Vechile Rc '}
+                    onChangeText={text => setVechile_rc(text)}
                 />
                 <View style={{ width: '90%', alignSelf: 'center' }}>
                     <CustomTextBoxLabel
@@ -111,6 +156,7 @@ const CabDetail = ({ props }) => {
                 </View>
                 <CustomTextInput
                     placeholder={'Vechile Number '}
+                    onChangeText={text => setVechile_number(text)}
                 />
                 <View style={{ width: '90%', alignSelf: 'center' }}>
                     <CustomTextBoxLabel
@@ -119,6 +165,7 @@ const CabDetail = ({ props }) => {
                 </View>
                 <CustomTextInput
                     placeholder={'Available Vans'}
+                    onChangeText={text => setAvailable_vans(text)}
                 />
                 <View style={{ width: '90%', alignSelf: 'center' }}>
                     <CustomTextBoxLabel
@@ -127,12 +174,13 @@ const CabDetail = ({ props }) => {
                 </View>
                 <CustomTextInput
                     placeholder={'Car Name '}
+                    onChangeText={text => setCar_model(text)}
                 />
                 <View>
                     <CutomButton
-                        title={'Submit'}
+                      title={'Save & Next'}
                         textStyle={styles.buttontext}
-                        onPress={()=>{navigation.navigate('uploaddoc')}}
+                        onPress={() => { onPressSaveButton() }}
 
                     />
                 </View>
@@ -147,6 +195,7 @@ const CabDetail = ({ props }) => {
             </View>
 
         </ScrollView>
+        </Fragment>
     );
 };
 

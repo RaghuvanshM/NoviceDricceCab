@@ -3,8 +3,11 @@ import { Text, View, TouchableOpacity, StyleSheet, StatusBar } from 'react-nativ
 import FontAwesomeNab from 'react-native-vector-icons/Fontisto';
 import { useNavigation } from '@react-navigation/native';
 import iconlist from '../Components/icon';
+
 const HomeScreen = (props) => {
     const navigation = useNavigation()
+
+   
     return (
         <View style={{ flex: 1 }}>
             <TouchableOpacity style={styles.upperview}

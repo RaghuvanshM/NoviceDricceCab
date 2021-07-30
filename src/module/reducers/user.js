@@ -1,18 +1,22 @@
 import {createReducer} from 'redux-act';
 import {
   authUser,
-  signOutUser
+  signOutUser,
+  driverRegistor,
+  buttonClick,
+  cabinfosave,
+  apiFailed,
+  sendOtp,
+  sendOtpPhone
 } from '../actions';
 
 const initialState = {
   isAuth:false,
   profile: '',
-  phonenumber: '',
-  currentAddress: '',
-  pickupaddress: '',
-  dropaddress: '',
-  pickuplatlong:0,
-  droplatlong:0
+  userid:'',
+  issubmit:false,
+  phonnumberdata:''
+  
 };
 
 export const user = createReducer({}, initialState);
@@ -32,5 +36,44 @@ user.on(signOutUser, state => {
     profile: '',
   };
 });
+user.on(driverRegistor, (state,payload) => {
+  console.log(payload)
+  return {
+    ...state,
+    issubmit: false,
+    userid:payload
+  };
+});
 
+user.on(buttonClick, (state) => {
+  return {
+    ...state,
+    issubmit: true,
+  };
+});
+user.on(cabinfosave, (state,payload) => {
+  console.log(payload)
+  return {
+    ...state,
+    issubmit: false,
+    message:payload.message
+  };
+});
+
+user.on(apiFailed, (state,payload) => {
+  return {
+    ...state,
+    issubmit: false,
+   
+  };
+});
+user.on(sendOtpPhone, (state,payload) => {
+ 
+  return {
+    ...state,
+    phonnumberdata:payload,
+    issubmit:false
+   
+  };
+});
 
