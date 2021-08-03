@@ -7,7 +7,8 @@ import {
   cabinfosave,
   apiFailed,
   sendOtp,
-  sendOtpPhone
+  sendOtpPhone,
+  singinApiHit
 } from '../actions';
 
 const initialState = {
@@ -15,13 +16,14 @@ const initialState = {
   profile: '',
   userid:'',
   issubmit:false,
-  phonnumberdata:''
+  phonnumberdata:'',
+  apifailed:false,
   
 };
 
 export const user = createReducer({}, initialState);
 user.on(authUser, (state, payload) => {
- console.log(payload)
+
   return {
     ...state,
     isAuth: payload,
@@ -37,7 +39,7 @@ user.on(signOutUser, state => {
   };
 });
 user.on(driverRegistor, (state,payload) => {
-  console.log(payload)
+ 
   return {
     ...state,
     issubmit: false,
@@ -48,11 +50,11 @@ user.on(driverRegistor, (state,payload) => {
 user.on(buttonClick, (state) => {
   return {
     ...state,
-    issubmit: true,
+    issubmit:false,
   };
 });
 user.on(cabinfosave, (state,payload) => {
-  console.log(payload)
+  
   return {
     ...state,
     issubmit: false,
@@ -61,9 +63,11 @@ user.on(cabinfosave, (state,payload) => {
 });
 
 user.on(apiFailed, (state,payload) => {
+  console.log('apifailed')
   return {
     ...state,
     issubmit: false,
+    apifailed:true
    
   };
 });
@@ -77,3 +81,11 @@ user.on(sendOtpPhone, (state,payload) => {
   };
 });
 
+user.on(singinApiHit, (state,payload) => {
+ 
+  return {
+    ...state,
+    issubmit:false
+   
+  };
+});

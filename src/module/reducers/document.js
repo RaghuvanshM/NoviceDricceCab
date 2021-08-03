@@ -31,3 +31,10 @@ const initialState = {
       isclick:false
     }
   })
+  document.on(profilePhototData,(state,payload)=>{
+    console.log(payload)
+    return{
+      ...state,
+      isclick:false
+    }
+  })

@@ -18,8 +18,8 @@ export const verifyNumber = function* (action) {
     yield put(sendOtpPhone(data))
      Toast.show({
       type: 'success',
-      text1:  `Otp send to ${action.payload.phonenumber}` ,
-      visibilityTime: 30000,
+      text1:  `Otp send to ` ,
+      visibilityTime: 3000,
       position: 'bottom',
     });
     }
@@ -39,8 +39,8 @@ export const verifyNumber = function* (action) {
     yield put(apiFailed(e?.response?.data?.message));
     Toast.show({
       type: 'error',
-      text1: e?.response?.data?.message || 'Incorrect email or password!',
-      visibilityTime: 30000,
+      text1: e?.response?.data?.message || 'Something Went Wrong ',
+      visibilityTime: 3000,
       position: 'bottom',
     });
   }

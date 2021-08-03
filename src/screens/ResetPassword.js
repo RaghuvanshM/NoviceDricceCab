@@ -51,7 +51,7 @@ const ResetPassword = ({ props }) => {
                 flex: 0.5
             }}>
                 {isok && <View style={styles.messageview}>
-                    <Text style={styles.resettext}>Enter Email  for the verification  </Text>
+                    <Text style={styles.resettext}>Now you can reset you password </Text>
                     <TouchableOpacity
                         style={styles.crossbutton}
                         onPress={() => { setIsOk(false) }}

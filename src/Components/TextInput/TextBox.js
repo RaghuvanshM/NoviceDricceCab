@@ -24,6 +24,7 @@ const TextBoxComponent = props => {
         maxLength={props.maxLength}
         onChangeText={props.onChangeText}
         secureTextEntry={props.secureTextEntry}
+        value={props.value}
       />
       {props.isicon ? (
         <TouchableOpacity style={{justifyContent: 'center'}}

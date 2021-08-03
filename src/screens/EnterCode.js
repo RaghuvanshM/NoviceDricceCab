@@ -49,7 +49,7 @@ const EnterCode = ({ props }) => {
                 flex: 0.5
             }}>
                 {isok && <View style={styles.messageview}>
-                    <Text style={styles.resettext}>Enter Email  for the verification  </Text>
+                    <Text style={styles.resettext}>Code sent to raghu1197 </Text>
                     <TouchableOpacity
                         style={styles.crossbutton}
                         onPress={() => { setIsOk(false) }}

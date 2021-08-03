@@ -9,6 +9,9 @@ import ImagePicker from 'react-native-image-picker';
 import { documentButtonClick, profilPhoto, uploddocfaild } from '../../module/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { geDocButtonClick } from '../../module/selectors';
+import Toast from 'react-native-toast-message';
+import { profileImageUpload } from '../../module/saga/profilephoto';
+
 const options = {
     title: 'Profile Picture',
     takePhotoButtonTitle: 'Take photo with your camera',
@@ -31,14 +34,29 @@ const Photo = () => {
                 dispatch(uploddocfaild())
             } else {
                 let source = { uri: response.uri };
-                setImageurl(source)
-                let imagedata = {
-                    name: 'profile_picture',
-                    filename: response.fileName,
-                    type: 'image/png',
-                    data: response.data,
+                if (response.type === 'image/jpeg' || response.type === 'image/jpg' || response.type === 'image/png') {
+                    console.log(source)
+                    setImageurl(source)
+                    let imagedata = {
+                        name: 'profile_picture',
+                        filename: response.fileName,
+                        type: 'image/png',
+                        data: response.data,
+                    }
+                    dispatch(profilPhoto(imagedata))
                 }
-                dispatch(profilPhoto(imagedata))
+                else {
+                    Toast.show({
+                        type: 'error',
+                        text1: 'Please Choose Correct Image',
+                        visibilityTime: 30000,
+                        position: 'bottom',
+                    });
+                    dispatch(uploddocfaild())
+                }
+
+
+              
 
 
             }

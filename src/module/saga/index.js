@@ -7,6 +7,7 @@ import * as aadharImage from './AdharPic'
 import * as CabPicture from './cabImage'
 import  * as uploadCabVideo from './Video'
 import * as MobileAuthentication from './MobielAuth'
+import * as SigninDriver from './signin'
 import * as actions from '../actions';
 
 
@@ -21,6 +22,8 @@ export default function* rootSaga() {
   yield takeLatest(actions.uploadCabImage, CabPicture.cabPhoto);
   yield takeLatest(actions.cabvideoUpload, uploadCabVideo.cabVideo);
   yield takeLatest(actions.mobileAuth, MobileAuthentication.verifyNumber);
+  yield takeLatest(actions.driversignin, SigninDriver.signInDriver);
+
 
 
 

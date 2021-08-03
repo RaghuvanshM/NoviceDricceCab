@@ -11,8 +11,8 @@ export const profileImageUpload = function* (action) {
   console.log(action)
   try {
     const userDetails = yield call(DocumentUpload,Apiurl.profileimage,{...action.payload});
-
-    if(userDetails.data!==''){
+    console.log(userDetails)
+    if(userDetails?.data!==''){
     yield put(profilePhototData())
      Toast.show({
       type: 'success',

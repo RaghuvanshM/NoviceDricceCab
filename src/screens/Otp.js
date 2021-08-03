@@ -25,6 +25,7 @@ const OtpScreen = () => {
   const [otp4, setOtp4] = useState('');
   const navigation = useNavigation();
   const phonenumber = useSelector(getPhoneNumberdata);
+
   const confirmVerificationCode = () => {
     if (phonenumber.otp == otpverify) {
       showMessage({
@@ -41,9 +42,11 @@ const OtpScreen = () => {
     }
   };
   const onsubmit = () => {
-   if(parseInt(otp1+otp2+otp3+otp4)===phonenumber.payload.otp){
-     navigation.navigate('uploaddoc')
-   }
+  
+  //   console.log((otp1+otp2+otp3+otp4)===phonenumber.payload.phonenumber.otp)
+  //  if(parseInt(otp1+otp2+otp3+otp4)===phonenumber.payload.otp){
+     navigation.navigate('registration')
+  //  }
   }
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
@@ -61,7 +64,7 @@ const OtpScreen = () => {
           style={{ height: '40%', width: '90%' }}
         />
         <Text style={styles.mobiletext}>OTP VERIFICATION</Text>
-        <Text style={styles.otpText}>{`Enter OTP sent to +91-${phonenumber.payload.phonenumber}`}</Text>
+        {/* <Text style={styles.otpText}>{`Enter OTP sent to +91-${phonenumber.payload.phonenumber}`}</Text> */}
       </View>
       <View style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>

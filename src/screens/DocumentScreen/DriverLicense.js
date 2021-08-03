@@ -5,6 +5,8 @@ import Iconlist from '../../Components/icon'
 import Icon from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../../Components/Button/Button';
 import { useNavigation } from '@react-navigation/core';
+import Toast from 'react-native-toast-message';
+
 import ImagePicker from 'react-native-image-picker';
 import { documentButtonClick, drivingLicense, profilPhoto, uploddocfaild } from '../../module/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +34,7 @@ const DriverLicense = () => {
 
             } else {
                 let source = { uri: response.uri };
+                if (response.type === 'image/jpeg' || response.type === 'image/jpg' || response.type === 'image/png') {
                 setImageurl(source)
                 let imagedata = {
                     name: 'license_img',
@@ -40,6 +43,18 @@ const DriverLicense = () => {
                     data: response.data,
                 }
                 dispatch(drivingLicense(imagedata))
+            }
+            else
+            {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Please Choose Correct Image',
+                    visibilityTime: 30000,
+                    position: 'bottom',
+                });
+                dispatch(uploddocfaild())
+            }
+             
 
 
             }

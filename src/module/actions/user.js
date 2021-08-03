@@ -28,3 +28,5 @@ export const cabvideoUpload = createAction()
 
 export const uploddocfaild = createAction()
 export const mobileAuth = createAction()
+export const driversignin = createAction()
+export const singinApiHit = createAction()

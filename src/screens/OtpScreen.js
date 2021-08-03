@@ -9,7 +9,7 @@ import {
   ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { mobileAuth, phoneAuth, sendOtp } from '../module/actions';
+import { buttonClick, mobileAuth, phoneAuth, sendOtp } from '../module/actions';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
@@ -21,37 +21,46 @@ import images from '../Constants/image';
 import Colors from '../Components/Colors';
 import { mobileNumber } from '../Constants/appConstant';
 import Toast from 'react-native-toast-message';
-import { getPhoneNumber, getPhoneNumberdata } from '../module/selectors';
+import { getApifailed, getButtonClick, getPhoneNumber, getPhoneNumberdata } from '../module/selectors';
+import { Fragment } from 'react';
 
 const OtpScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const phonedata = useSelector(getPhoneNumberdata)
-  console.log(phonedata)
+  // const phonedata = useSelector(getPhoneNumberdata)
+  // console.log(phonedata)
   const [phone, setPhone] = useState('');
   // useEffect(() => {
   //   dispatch(phoneAuth);
   // }, [dispatch]);
+  const apifalied = useSelector(getApifailed)
+  const isclick = useSelector(getButtonClick)
+  console.log(isclick)
 
   const validatePhone = () => {
     return mobileNumber.test(phone);
   };
   const sendOtpbuttoncall = async () => {
-
+    navigation.navigate('otpverificatonscreen')
     if (validatePhone()) {
+      navigation.navigate('otpverificatonscreen')
+      dispatch(buttonClick())
       var val = await Math.floor(1000 + Math.random() * 9000);
       let data = { phonenumber: phone, otp: val }
-      console.log(phonedata.response)
-      dispatch(mobileAuth(data))
-      if(phonedata.response.Status==='Success'){
+   
+     await  dispatch(mobileAuth(data))
+      if(apifalied){
         navigation.navigate('otpverificatonscreen')
+      }else{
+        navigation.navigate('otpverificatonscreen')
+        setPhone('')
       }
     }
     else {
       Toast.show({
         type: 'error',
         text1:  'Enter Correct Mobile Number',
-        visibilityTime: 30000,
+        visibilityTime: 3000,
         position: 'bottom',
       });
     }
@@ -61,6 +70,7 @@ const OtpScreen = () => {
     //   if (validatePhone()) {
     //     var val = await Math.floor(1000 + Math.random() * 9000);
     //     const url = `http://2factor.in/API/V1/fce9a032-d8c4-11eb-8089-0200cd936042/SMS/${phone}/${val}`;
+    //     await fetch(url, {/SMS/${phone}/${val}`;
     //     await fetch(url, {
     //       method: 'GET',
     //       headers: {
@@ -85,6 +95,20 @@ const OtpScreen = () => {
     // }
   };
   return (
+    <Fragment>
+       {isclick && (
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(3,3,3, 0.8)',
+            zIndex: 10,
+          }}>
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
+      )}
     <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
       <TouchableOpacity style={{ flex: 0.3 }}
         onPress={() => { navigation.goBack() }}
@@ -117,6 +141,7 @@ const OtpScreen = () => {
           keyboardType={'number-pad'}
           maxLength={10}
           onChangeText={text => setPhone(text)}
+          value={phone}
         />
         <View>
           <CutomButton
@@ -127,6 +152,7 @@ const OtpScreen = () => {
         </View>
       </View>
     </ScrollView>
+    </Fragment>
   );
 };
 export default OtpScreen;

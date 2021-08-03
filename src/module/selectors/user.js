@@ -12,6 +12,8 @@ export const geDocButtonClick =(state)=>state.document.isclick
 
 export const getPhoneNumberdata = (state)=>state.user.phonnumberdata
 
+export const getApifailed = (state)=>state.user.apifailed
+
 // export const getJwtToken = (state: IStoreState) =>
 //   state.user?.profile?.access_token || '';
 // export const getWelcomeInfoShow = (state: IStoreState) =>

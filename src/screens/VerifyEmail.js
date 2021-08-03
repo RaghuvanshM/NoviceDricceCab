@@ -14,19 +14,18 @@ import Iconlist from '../Components/icon'
 import Geolocation from '@react-native-community/geolocation';
 import { WebView } from 'react-native-webview';
 let { height, width } = Dimensions.get('window')
-
 import images from '../Constants/image'
 import { currentLocation } from '../module/utils/Apis/currentLatLong'
 const VerifyEmail = ({ props }) => {
-  
+
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const [isok, setIsOk] = useState(true)
-    console.log(height,width)
+    console.log(height, width)
     const onLoginPress = async () => {
-      navigation.navigate('enterotp')
-    } 
-    
+        navigation.navigate('enterotp')
+    }
+
     const onReset = () => {
         return <WebView source={{ uri: 'https://reactnative.dev/' }} />;
     }
@@ -49,7 +48,7 @@ const VerifyEmail = ({ props }) => {
                 flex: 0.5
             }}>
                 {isok && <View style={styles.messageview}>
-                    <Text style={styles.resettext}>Enter Email  for the verification  </Text>
+                    <Text numberOfLines={1} style={styles.resettext}>Enter Email  for the verification  </Text>
                     <TouchableOpacity
                         style={styles.crossbutton}
                         onPress={() => { setIsOk(false) }}
@@ -106,9 +105,10 @@ const styles = StyleSheet.create({
         fontFamily: 'OpenSans-Bold'
     },
     resettext: {
-        fontSize: 18,
+        fontSize: 15,
         color: Colors.resesttTextColor,
         fontFamily: 'OpenSans-Bold',
+        width: width * 0.8,
 
     },
     messageview: {
