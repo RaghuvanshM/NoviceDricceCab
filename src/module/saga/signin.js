@@ -1,6 +1,6 @@
 
 import { signInApi } from '../utils/Apis/user';
-import { apiFailed, authUser, driverRegistor,singinApiHit } from '../actions';
+import { apiFailed, authUser, driverRegistor,loginStatus,singinApiHit } from '../actions';
 import { call, put } from 'redux-saga/effects';
 import Apiurl, { ENV, ENV_TYPE } from '../utils/api-constants';
 import { SagaIterator } from 'redux-saga';
@@ -11,9 +11,9 @@ export const signInDriver = function* (action) {
   console.log(action)
   try {
     const userDetails = yield call(signInApi,Apiurl.login,{...action.payload});
-    console.log(userDetails)
+    console.log(userDetails.data)
     if(userDetails.data.response.status==='true'){
-      yield put(singinApiHit(userDetails.data.data.uid))
+      yield put(loginStatus(userDetails.data.data.id_driver))
      Toast.show({
       type: 'error',
       text1: userDetails.data.response.message || 'Completed Go to next',

@@ -1,6 +1,6 @@
 apply plugin: "com.android.application"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
-
+apply plugin: 'com.google.gms.google-services'
 import com.android.build.OutputFile
 
 /**
@@ -199,7 +199,9 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 implementation project(':react-native-community-geolocation')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation project(':react-native-maps')  
 compile project(':react-native-vector-icons')
+implementation platform('com.google.firebase:firebase-bom:28.3.0')
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment, useEffect, useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Button, Image, ScrollView,ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Button, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -11,37 +11,41 @@ import CustomTextBoxLabel from '../Components/Label/TextBoxLabel'
 import Colors from '../Components/Colors';
 import Iconlist from '../Components/icon'
 import images from '../Constants/image'
-import { getButtonClick, getdriverId } from '../module/selectors/user';
+import { getButtonClick, getdriverId, getisCabinfo } from '../module/selectors/user';
 const CabDetail = ({ props }) => {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const isclick = useSelector(getButtonClick)
-    console.log(isclick)
-    // const id_driver = useSelector(getdriverId)
-
-     //id_driver
-    const [ type_of_vechile, setTypeofVechile] = useState('')
+    const id_driver = useSelector(getdriverId)
+    console.log(id_driver)
+    const iscabinfo = useSelector(getisCabinfo)
+    console.log(iscabinfo)
+    const [type_of_vechile, setTypeofVechile] = useState('')
     const [sheets, setSheets] = useState('')
     const [vechile_rc, setVechile_rc] = useState('')
     const [vechile_number, setVechile_number] = useState('')
     const [available_vans, setAvailable_vans] = useState('')
     const [car_model, setCar_model] = useState('')
-    const onPressSaveButton=()=>{
-     
-    dispatch(buttonClick())
-     dispatch(cabinfo(
-         {  // const id_driver = useSelector(getdriverId)
-            id_driver:38,
-            type_of_vechile,
-             sheets,
-             vechile_rc,
-             vechile_number,
-             available_vans,
-             car_model
-        }
-     ))
-     navigation.navigate('uploaddoc')
+    const onPressSaveButton = () => {
+
+        dispatch(buttonClick())
+        dispatch(cabinfo(
+            {
+                id_driver:parseInt(id_driver),
+                type_of_vechile,
+                sheets,
+                vechile_rc,
+                vechile_number,
+                available_vans,
+                car_model
+            }
+        ))
     }
+    // useEffect(() => {
+    //     if (iscabinfo) {
+    //         navigation.navigate('uploaddoc')
+    //     }
+    // })
     return (
         // <View style={styles.loginview}>
 
@@ -102,99 +106,99 @@ const CabDetail = ({ props }) => {
                     <ActivityIndicator size="large" color="#fff" />
                 </View>
             )}
-        <ScrollView
-            contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
-        >
-            <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => { navigation.goBack() }}
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
             >
-                <Icon
-                    name={Iconlist.arrowleft}
-                    size={30}
-                    style={{ margin: '4%' }}
-                />
-            </TouchableOpacity>
-            <View style={{ flex: 0 }}>
-                <Image
-                    source={images.parrentloginiamge}
-                    resizeMode='contain'
-                    style={{ height: 70, width: '90%' }}
-                />
-            </View>
-            <View style={{ flex: 1 }}>
-                <View style={{ width: '90%', alignSelf: 'center' }}>
-                    <CustomTextBoxLabel
-                        label={'Type of Vechile'}
+                <TouchableOpacity style={{ flex: 1 }}
+                    onPress={() => { navigation.goBack() }}
+                >
+                    <Icon
+                        name={Iconlist.arrowleft}
+                        size={30}
+                        style={{ margin: '4%' }}
+                    />
+                </TouchableOpacity>
+                <View style={{ flex: 0 }}>
+                    <Image
+                        source={images.parrentloginiamge}
+                        resizeMode='contain'
+                        style={{ height: 70, width: '90%' }}
                     />
                 </View>
-                <CustomTextInput
-                    placeholder={'Ex Mini Van'}
-                    onChangeText={text => setTypeofVechile(text)}
-                />
-                <View style={{ width: '90%', alignSelf: 'center' }}>
-                    <CustomTextBoxLabel
-                        label={'Number of sheets -'}
+                <View style={{ flex: 1 }}>
+                    <View style={{ width: '90%', alignSelf: 'center' }}>
+                        <CustomTextBoxLabel
+                            label={'Type of Vechile'}
+                        />
+                    </View>
+                    <CustomTextInput
+                        placeholder={'Ex Mini Van'}
+                        onChangeText={text => setTypeofVechile(text)}
                     />
-                </View>
-                <CustomTextInput
-                    placeholder={'No of sheets in vechile '}
-                    onChangeText={text => setSheets(text)}
-                />
-                <View style={{ width: '90%', alignSelf: 'center' }}>
-                    <CustomTextBoxLabel
-                        label={'Vechile Rc'}
+                    <View style={{ width: '90%', alignSelf: 'center' }}>
+                        <CustomTextBoxLabel
+                            label={'Number of sheets -'}
+                        />
+                    </View>
+                    <CustomTextInput
+                        placeholder={'No of sheets in vechile '}
+                        onChangeText={text => setSheets(text)}
                     />
-                </View>
-                <CustomTextInput
-                    placeholder={'Vechile Rc '}
-                    onChangeText={text => setVechile_rc(text)}
-                />
-                <View style={{ width: '90%', alignSelf: 'center' }}>
-                    <CustomTextBoxLabel
-                        label={'Vechile Number'}
+                    <View style={{ width: '90%', alignSelf: 'center' }}>
+                        <CustomTextBoxLabel
+                            label={'Vechile Rc'}
+                        />
+                    </View>
+                    <CustomTextInput
+                        placeholder={'Vechile Rc '}
+                        onChangeText={text => setVechile_rc(text)}
                     />
-                </View>
-                <CustomTextInput
-                    placeholder={'Vechile Number '}
-                    onChangeText={text => setVechile_number(text)}
-                />
-                <View style={{ width: '90%', alignSelf: 'center' }}>
-                    <CustomTextBoxLabel
-                        label={'No of Available Vans'}
+                    <View style={{ width: '90%', alignSelf: 'center' }}>
+                        <CustomTextBoxLabel
+                            label={'Vechile Number'}
+                        />
+                    </View>
+                    <CustomTextInput
+                        placeholder={'Vechile Number '}
+                        onChangeText={text => setVechile_number(text)}
                     />
-                </View>
-                <CustomTextInput
-                    placeholder={'Available Vans'}
-                    onChangeText={text => setAvailable_vans(text)}
-                />
-                <View style={{ width: '90%', alignSelf: 'center' }}>
-                    <CustomTextBoxLabel
-                        label={'Car-Name/Model'}
+                    <View style={{ width: '90%', alignSelf: 'center' }}>
+                        <CustomTextBoxLabel
+                            label={'No of Available Vans'}
+                        />
+                    </View>
+                    <CustomTextInput
+                        placeholder={'Available Vans'}
+                        onChangeText={text => setAvailable_vans(text)}
                     />
-                </View>
-                <CustomTextInput
-                    placeholder={'Car Name '}
-                    onChangeText={text => setCar_model(text)}
-                />
-                <View>
-                    <CutomButton
-                      title={'Save & Next'}
-                        textStyle={styles.buttontext}
-                        onPress={() => { onPressSaveButton() }}
+                    <View style={{ width: '90%', alignSelf: 'center' }}>
+                        <CustomTextBoxLabel
+                            label={'Car-Name/Model'}
+                        />
+                    </View>
+                    <CustomTextInput
+                        placeholder={'Car Name '}
+                        onChangeText={text => setCar_model(text)}
+                    />
+                    <View>
+                        <CutomButton
+                            title={'Save & Next'}
+                            textStyle={styles.buttontext}
+                            onPress={() => { onPressSaveButton() }}
 
-                    />
-                </View>
-                <View style={styles.forgetpasswordview}>
-                    {/* <Text style={styles.forgetpasstext}>
+                        />
+                    </View>
+                    <View style={styles.forgetpasswordview}>
+                        {/* <Text style={styles.forgetpasstext}>
             Forget Password?
           </Text>
           <Text style={styles.resettext}>
             Reset here
           </Text> */}
+                    </View>
                 </View>
-            </View>
 
-        </ScrollView>
+            </ScrollView>
         </Fragment>
     );
 };

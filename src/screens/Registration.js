@@ -12,11 +12,14 @@ import CustomTextBoxLabel from '../Components/Label/TextBoxLabel'
 import Colors from '../Components/Colors';
 import Iconlist from '../Components/icon'
 import images from '../Constants/image';
+import messaging from '@react-native-firebase/messaging';
 import Toast from 'react-native-toast-message';
-import { getButtonClick, getUserProfile } from '../module/selectors/user';
+import { getButtonClick, getdriverId, getisUserDetail, getUserProfile } from '../module/selectors/user';
 const Registration = ({ props }) => {
     const dispatch = useDispatch();
     const isclick = useSelector(getButtonClick)
+    const alredyuser = useSelector(getisUserDetail)
+    console.log(alredyuser)
     console.log(isclick)
     const navigation = useNavigation()
     const [name, setName] = useState('')
@@ -30,11 +33,20 @@ const Registration = ({ props }) => {
     const [bank_name, setBankeName] = useState('')
     const [bank_account, setAccountNo] = useState('')
     const [ifsc_code, setIfscCode] = useState('')
-    useEffect(() => {
-
+    const [device_id, setDeviceId] = useState('')
+    useEffect(async () => {
+        fcmToken = await messaging().getToken()
+        setDeviceId(fcmToken)
+        console.log(fcmToken)
     }, [])
-    const onPressSaveButton = () => {
-       
+    useEffect(()=>{
+        console.log(alredyuser)
+        if (alredyuser) {
+            navigation.navigate('cabdetails')
+        }
+    },[alredyuser])
+    const onPressSaveButton = async () => {
+
         dispatch(buttonClick())
         dispatch(signUpUser(
             {
@@ -48,9 +60,10 @@ const Registration = ({ props }) => {
                 pan_card,
                 bank_name,
                 bank_account,
-                ifsc_code
+                ifsc_code,
+                device_id
             }))
-           navigation.navigate('cabdetails')
+       
     }
 
     return (
@@ -142,6 +155,7 @@ const Registration = ({ props }) => {
                         placeholder={'Name'}
                         // onChange={(text)=>setName({name:text})}
                         onChangeText={text => setName(text)}
+                        value={name}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -153,6 +167,7 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'Email '}
                         onChangeText={text => setEmail(text)}
+                        value={email}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -165,15 +180,18 @@ const Registration = ({ props }) => {
                         onChangeText={text => setMobile(text)}
                         keyboardType={'number-pad'}
                         maxLength={10}
+                        value={mobile}
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
                         <CustomTextBoxLabel
                             label={'Create Password'}
+                            
                         />
                     </View>
                     <CustomTextInput
                         placeholder={'Password '}
                         onChangeText={text => setPassword(text)}
+                        value={password}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -184,6 +202,7 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'Address '}
                         onChangeText={text => setAddress(text)}
+                        value={address}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -195,6 +214,7 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'Picode '}
                         onChangeText={text => setPincode(text)}
+                        value={pincode}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -205,6 +225,8 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'License No '}
                         onChangeText={text => setLicenseNo(text)}
+                        value={license}
+
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
                         <CustomTextBoxLabel
@@ -215,6 +237,7 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'Pan-No '}
                         onChangeText={text => setPancardno(text)}
+                        value={pan_card}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -225,6 +248,7 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'Bank Name '}
                         onChangeText={text => setBankeName(text)}
+                        value={bank_name}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -236,6 +260,7 @@ const Registration = ({ props }) => {
                         placeholder={'Account Number '}
                         onChangeText={text => setAccountNo(text)}
                         keyboardType={'number-pad'}
+                        value={bank_account}
 
                     />
                     <View style={{ width: '90%', alignSelf: 'center' }}>
@@ -246,6 +271,7 @@ const Registration = ({ props }) => {
                     <CustomTextInput
                         placeholder={'IFSC CODE '}
                         onChangeText={text => setIfscCode(text)}
+                        value={ifsc_code}
 
                     />
                     <View>

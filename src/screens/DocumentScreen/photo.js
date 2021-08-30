@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import CabdocComponent from '../../Components/Document/Cabdoc';
 import Iconlist from '../../Components/icon'
@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/core';
 import ImagePicker from 'react-native-image-picker';
 import { documentButtonClick, profilPhoto, uploddocfaild } from '../../module/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { geDocButtonClick } from '../../module/selectors';
+import { geDocButtonClick, getdriverId } from '../../module/selectors';
 import Toast from 'react-native-toast-message';
 import { profileImageUpload } from '../../module/saga/profilephoto';
 
@@ -22,7 +22,11 @@ const Photo = () => {
     const dispatch = useDispatch()
     const [ImageUrl, setImageurl] = useState('')
     const isbuttonClick = useSelector(geDocButtonClick)
-    console.log(isbuttonClick)
+    const id_driver = useSelector(getdriverId)
+    useEffect(()=>{
+        dispatch(uploddocfaild())
+    },[])
+    console.log(id_driver)
     const onChoosePhotoClick = () => {
         dispatch(documentButtonClick())
         ImagePicker.showImagePicker(options, (response) => {
@@ -43,7 +47,11 @@ const Photo = () => {
                         type: 'image/png',
                         data: response.data,
                     }
-                    dispatch(profilPhoto(imagedata))
+                    let id ={
+                        name: 'id_driver', data:id_driver
+                    }
+                
+              
                 }
                 else {
                     Toast.show({

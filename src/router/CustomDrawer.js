@@ -13,6 +13,7 @@ const CustomeContent = (props) => {
     const navigation = useNavigation();
    const dispatch = useDispatch()
   const onSignOutPress=()=>{
+      alert('hello')
       dispatch(signOutUser())
    }
     return (

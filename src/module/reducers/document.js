@@ -1,6 +1,6 @@
 import {createReducer} from 'redux-act';
 
-import { profilPhoto,documentButtonClick, profilePhototData, uploddocfaild } from '../actions';
+import { documentButtonClick, profilePhototData, uploddocfaild } from '../actions';
 const initialState = {
    isUpload:false,
    isclick:false,
@@ -10,14 +10,7 @@ const initialState = {
 
   export const document = createReducer({}, initialState);
 
-  document.on(profilPhoto, (state, payload) => {
-    console.log(payload)
-     return {
-       ...state,
-       isAuth: payload,
-       profile: payload,
-     };
-   });
+  
    document.on(documentButtonClick,(state)=>{
      return{
        ...state,

@@ -1,6 +1,6 @@
 
 import { signInApi } from '../utils/Apis/user';
-import {cabinfo, cabinfosave,apiFailed } from '../actions';
+import {cabinfo, cabinfosave,apiFailed, cabinfosuccess } from '../actions';
 import { call, put } from 'redux-saga/effects';
 import Apiurl, { ENV, ENV_TYPE } from '../utils/api-constants';
 import { SagaIterator } from 'redux-saga';
@@ -12,7 +12,7 @@ export const saveCabDetil = function* (action) {
     const userDetails = yield call(signInApi,Apiurl.cabdetail,{...action.payload,});
    console.log(userDetails.data)
     if(userDetails.data.response.status==='true'){
-     yield put(cabinfosave(userDetails.data.response))
+     yield put(cabinfosuccess())
      Toast.show({
       type: 'error',
       text1: userDetails.data.response.message || 'Completed Go to next',

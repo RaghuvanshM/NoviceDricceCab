@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
     Text,
     View,
@@ -12,8 +12,15 @@ import Icon from 'react-native-vector-icons/Entypo';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import Iconlist from '../Components/icon';
 import { useNavigation } from '@react-navigation/core';
+import { useDispatch } from 'react-redux';
+import { uploddocfaild } from '../module/actions/user';
 const Document = (props) => {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        console.log('hello')
+        dispatch(uploddocfaild())
+    },[navigation])
     return (
         <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}

@@ -30,3 +30,8 @@ export const uploddocfaild = createAction()
 export const mobileAuth = createAction()
 export const driversignin = createAction()
 export const singinApiHit = createAction()
+export const driverRegistrationid = createAction()
+
+export const loginStatus = createAction()
+export const updateDriverLocation = createAction()
+export const cabinfosuccess = createAction()

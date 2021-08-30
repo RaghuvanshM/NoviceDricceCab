@@ -9,6 +9,7 @@ import  * as uploadCabVideo from './Video'
 import * as MobileAuthentication from './MobielAuth'
 import * as SigninDriver from './signin'
 import * as actions from '../actions';
+import * as UpdateDriverLocation from './Updatelocation'
 
 
 export default function* rootSaga() {
@@ -23,8 +24,7 @@ export default function* rootSaga() {
   yield takeLatest(actions.cabvideoUpload, uploadCabVideo.cabVideo);
   yield takeLatest(actions.mobileAuth, MobileAuthentication.verifyNumber);
   yield takeLatest(actions.driversignin, SigninDriver.signInDriver);
-
-
+  yield takeLatest(actions.updateDriverLocation,UpdateDriverLocation.upDateLocation)
 
 
   //   yield takeLatest(actions.dropAddToLatLong, AddTolatlong.dropAddressTolatlong);

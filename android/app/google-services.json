@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "433167862766",
+    "project_id": "novicedriverapp",
+    "storage_bucket": "novicedriverapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433167862766:android:2519483995417e7b7fdcff",
+        "android_client_info": {
+          "package_name": "com.noviedriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433167862766-t99i2pg8l9o94n6et0m9fvvmgl7sonn6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsfKAeX-j6bObFl02K1bi0YUMlVVy1gF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433167862766-t99i2pg8l9o94n6et0m9fvvmgl7sonn6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

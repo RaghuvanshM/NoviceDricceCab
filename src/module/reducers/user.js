@@ -8,7 +8,11 @@ import {
   apiFailed,
   sendOtp,
   sendOtpPhone,
-  singinApiHit
+  singinApiHit,
+  driverRegistrationid,
+  loginStatus,
+  cabinfosuccess,
+  cabinfo,
 } from '../actions';
 
 const initialState = {
@@ -18,6 +22,9 @@ const initialState = {
   issubmit:false,
   phonnumberdata:'',
   apifailed:false,
+  isuserdetail:false,
+  iscabinfo:false
+
   
 };
 
@@ -26,7 +33,7 @@ user.on(authUser, (state, payload) => {
 
   return {
     ...state,
-    isAuth: payload,
+ 
     profile: payload,
   };
 });
@@ -39,18 +46,19 @@ user.on(signOutUser, state => {
   };
 });
 user.on(driverRegistor, (state,payload) => {
- 
+ console.log(payload)
   return {
     ...state,
     issubmit: false,
-    userid:payload
+    isuserdetail:false
+   
   };
 });
 
 user.on(buttonClick, (state) => {
   return {
     ...state,
-    issubmit:false,
+    issubmit:true,
   };
 });
 user.on(cabinfosave, (state,payload) => {
@@ -58,7 +66,8 @@ user.on(cabinfosave, (state,payload) => {
   return {
     ...state,
     issubmit: false,
-    message:payload.message
+    message:payload.message,
+    iscabinfo:false
   };
 });
 
@@ -67,7 +76,8 @@ user.on(apiFailed, (state,payload) => {
   return {
     ...state,
     issubmit: false,
-    apifailed:true
+    apifailed:true,
+    iscabinfo:false
    
   };
 });
@@ -87,5 +97,32 @@ user.on(singinApiHit, (state,payload) => {
     ...state,
     issubmit:false
    
+  };
+});
+user.on(driverRegistrationid, (state,payload) => {
+  console.log(payload)
+  return {
+    ...state,
+    issubmit:false,
+    userid:payload,
+    isuserdetail:true,
+    logindriverid:''
+   
+  };
+});
+user.on(loginStatus, (state,payload) => {
+  console.log(payload)
+  return {
+    ...state,
+    issubmit:false,
+    isAuth:true,
+    logindriverid:payload
+  };
+});
+user.on(cabinfosuccess, (state,payload) => {
+  return {
+    ...state,
+    issubmit:false,
+    iscabinfo:true
   };
 });

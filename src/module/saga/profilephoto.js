@@ -7,8 +7,8 @@ import { SagaIterator } from 'redux-saga';
 
 import Toast from 'react-native-toast-message';
 
-export const profileImageUpload = function* (action) {
-  console.log(action)
+export const profileImageUpload = function* (action,id) {
+  console.log(action,id)
   try {
     const userDetails = yield call(DocumentUpload,Apiurl.profileimage,{...action.payload});
     console.log(userDetails)

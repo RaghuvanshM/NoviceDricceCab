@@ -14,6 +14,11 @@ export const getPhoneNumberdata = (state)=>state.user.phonnumberdata
 
 export const getApifailed = (state)=>state.user.apifailed
 
+export const getisUserDetail = (state)=>state.user.isuserdetail
+
+export const getisCabinfo = (state)=>state.user.iscabinfo
+
+export const getloginDriverid= (state)=>state.user.logindriverid
 // export const getJwtToken = (state: IStoreState) =>
 //   state.user?.profile?.access_token || '';
 // export const getWelcomeInfoShow = (state: IStoreState) =>

@@ -11,7 +11,7 @@ const CabdocComponent =({data})=>{
         <Image 
          source={{uri:data.uri}}
          resizeMode='contain'
-         style={{height:'70%',width:'100%'}}
+         style={{height:'30%',width:'100%'}}
         />
         </View>
     )
