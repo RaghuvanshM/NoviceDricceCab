@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "noviedriver.app"
-               BlueprintName = "noviedriver"
-               ReferencedContainer = "container:noviedriver.xcodeproj">
+               BuildableName = "NoviceDriver.app"
+               BlueprintName = "NoviceDriver"
+               ReferencedContainer = "container:NoviceDriver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "noviedriverTests.xctest"
-               BlueprintName = "noviedriverTests"
-               ReferencedContainer = "container:noviedriver.xcodeproj">
+               BuildableName = "NoviceDriverTests.xctest"
+               BlueprintName = "NoviceDriverTests"
+               ReferencedContainer = "container:NoviceDriver.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "noviedriver.app"
-            BlueprintName = "noviedriver"
-            ReferencedContainer = "container:noviedriver.xcodeproj">
+            BuildableName = "NoviceDriver.app"
+            BlueprintName = "NoviceDriver"
+            ReferencedContainer = "container:NoviceDriver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "noviedriver.app"
-            BlueprintName = "noviedriver"
-            ReferencedContainer = "container:noviedriver.xcodeproj">
+            BuildableName = "NoviceDriver.app"
+            BlueprintName = "NoviceDriver"
+            ReferencedContainer = "container:NoviceDriver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

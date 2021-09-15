@@ -30,19 +30,19 @@ const LoginScreen = ({ props }) => {
   const [device_id, setDeviceId] = useState('')
 
   const islogin = useSelector(getIsUserAuth)
-  console.log(islogin)
+ 
   const isclick = useSelector(getButtonClick)
-  console.log(isclick)
+  
   useEffect(async () => {
     const fcmToken = await messaging().getToken()
     setDeviceId(fcmToken)
-    console.log(fcmToken)
+  
   }, [])
   const onLoginPress = async () => {
-    console.log(email, password)
+   
     dispatch(buttonClick())
     await Geolocation.getCurrentPosition(info => {
-      console.log(info.coords)
+    
       setCurrentLat(info.coords.latitude)
       setCurrentlong(info.coords.longitude)
     })
@@ -162,3 +162,4 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Bold'
   }
 });
+

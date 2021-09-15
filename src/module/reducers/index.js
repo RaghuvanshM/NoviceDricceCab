@@ -1,2 +1,3 @@
 export * from './user';
-export * from './document'
+export * from './document';
+export * from './senddata'

@@ -10,8 +10,8 @@ import * as MobileAuthentication from './MobielAuth'
 import * as SigninDriver from './signin'
 import * as actions from '../actions';
 import * as UpdateDriverLocation from './Updatelocation'
-
-
+import * as driverData from './getAccepteddriver'
+import * as notification from './sendNotification'
 export default function* rootSaga() {
 
   // yield takeLatest(actions.getAirQualityIndex, airQuality.getAirQuality);
@@ -25,6 +25,10 @@ export default function* rootSaga() {
   yield takeLatest(actions.mobileAuth, MobileAuthentication.verifyNumber);
   yield takeLatest(actions.driversignin, SigninDriver.signInDriver);
   yield takeLatest(actions.updateDriverLocation,UpdateDriverLocation.upDateLocation)
+  yield takeLatest(actions.getAccetedDriverdata,driverData.getdriverData)
+  yield takeLatest(actions.sendNoticationUser,notification.sendNotificationtoUser)
+
+
 
 
   //   yield takeLatest(actions.dropAddToLatLong, AddTolatlong.dropAddressTolatlong);

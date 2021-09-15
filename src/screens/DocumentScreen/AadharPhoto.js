@@ -19,7 +19,7 @@ const DriverLicense = () => {
     const dispatch = useDispatch()
     const [ImageUrl, setImageurl] = useState('')
     const isbuttonClick = useSelector(geDocButtonClick)
-    console.log(isbuttonClick)
+
     const onChoosePhotoClick = () => {
         dispatch(documentButtonClick())
         ImagePicker.showImagePicker(options, (response) => {

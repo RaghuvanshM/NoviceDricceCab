@@ -1,0 +1,1 @@
+export const getBookingData = (state)=>state.sendDataToUser?.userData?.booking_id

@@ -1,10 +1,9 @@
 import axios from 'axios';
 import Apiurl from '../api-constants';
 
-export const signInApi = async (endpoint, payload) => {
-
+export const getDriverData = async (payload) => {
   return axios({
-    url: `${Apiurl.baseUrl}${endpoint}`,
+    url: `${Apiurl.getdriverdata}`,
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

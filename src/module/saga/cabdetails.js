@@ -10,7 +10,7 @@ import Toast from 'react-native-toast-message';
 export const saveCabDetil = function* (action) {
   try {
     const userDetails = yield call(signInApi,Apiurl.cabdetail,{...action.payload,});
-   console.log(userDetails.data)
+ 
     if(userDetails.data.response.status==='true'){
      yield put(cabinfosuccess())
      Toast.show({

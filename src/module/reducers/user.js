@@ -46,7 +46,7 @@ user.on(signOutUser, state => {
   };
 });
 user.on(driverRegistor, (state,payload) => {
- console.log(payload)
+
   return {
     ...state,
     issubmit: false,
@@ -72,7 +72,7 @@ user.on(cabinfosave, (state,payload) => {
 });
 
 user.on(apiFailed, (state,payload) => {
-  console.log('apifailed')
+ 
   return {
     ...state,
     issubmit: false,
@@ -100,7 +100,7 @@ user.on(singinApiHit, (state,payload) => {
   };
 });
 user.on(driverRegistrationid, (state,payload) => {
-  console.log(payload)
+
   return {
     ...state,
     issubmit:false,
@@ -111,7 +111,7 @@ user.on(driverRegistrationid, (state,payload) => {
   };
 });
 user.on(loginStatus, (state,payload) => {
-  console.log(payload)
+
   return {
     ...state,
     issubmit:false,

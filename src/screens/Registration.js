@@ -19,8 +19,7 @@ const Registration = ({ props }) => {
     const dispatch = useDispatch();
     const isclick = useSelector(getButtonClick)
     const alredyuser = useSelector(getisUserDetail)
-    console.log(alredyuser)
-    console.log(isclick)
+
     const navigation = useNavigation()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -37,10 +36,10 @@ const Registration = ({ props }) => {
     useEffect(async () => {
         fcmToken = await messaging().getToken()
         setDeviceId(fcmToken)
-        console.log(fcmToken)
+   
     }, [])
     useEffect(()=>{
-        console.log(alredyuser)
+      
         if (alredyuser) {
             navigation.navigate('cabdetails')
         }

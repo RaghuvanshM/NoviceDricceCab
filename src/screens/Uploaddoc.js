@@ -18,7 +18,7 @@ const Document = (props) => {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     useEffect(()=>{
-        console.log('hello')
+
         dispatch(uploddocfaild())
     },[navigation])
     return (

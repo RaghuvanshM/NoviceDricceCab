@@ -23,7 +23,7 @@ const ResetPassword = ({ props }) => {
     const dispatch = useDispatch()
     const [isok, setIsOk] = useState(true)
     const [secure,setSecure] = useState(true)
-    console.log(height, width)
+ 
     const onLoginPress = async () => {
 
     }
@@ -31,7 +31,7 @@ const ResetPassword = ({ props }) => {
     const onReset = () => {
         return <WebView source={{ uri: 'https://reactnative.dev/' }} />;
     }
-    console.log(secure)
+ 
     return (
         <ScrollView
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}

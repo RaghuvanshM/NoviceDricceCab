@@ -10,7 +10,6 @@ import Toast from 'react-native-toast-message';
 export const upDateLocation = function* (action) {
     try {
         const userDetails = yield call(signInApi, Apiurl.updatelocation, { ...action.payload });
-        console.log(userDetails.data)
 
     } catch (e) {
         console.log(e)

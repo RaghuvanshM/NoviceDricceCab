@@ -8,7 +8,6 @@ import { SagaIterator } from 'redux-saga';
 import Toast from 'react-native-toast-message';
 
 export const signIn = function* (action) {
-  console.log(action)
   try {
     const userDetails = yield call(signInApi, Apiurl.ragistration, { ...action.payload });
 

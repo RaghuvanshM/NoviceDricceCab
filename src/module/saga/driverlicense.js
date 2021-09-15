@@ -8,7 +8,7 @@ import { SagaIterator } from 'redux-saga';
 import Toast from 'react-native-toast-message';
 
 export const drivingLicense = function* (action) {
-  console.log(action)
+
   try {
     const userDetails = yield call(DocumentUpload,Apiurl.license,{...action.payload});
  

@@ -8,10 +8,10 @@ import { SagaIterator } from 'redux-saga';
 import Toast from 'react-native-toast-message';
 
 export const aadharPhoto = function* (action) {
-  console.log(action)
+
   try {
     const userDetails = yield call(DocumentUpload,Apiurl.aadharImage,{...action.payload});
-   console.log(userDetails)
+
     if(userDetails.data!==''){
     yield put(profilePhototData())
      Toast.show({

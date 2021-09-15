@@ -22,7 +22,7 @@ const EnterCode = ({ props }) => {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const [isok, setIsOk] = useState(true)
-    console.log(height,width)
+  
     const onLoginPress = async () => {
        navigation.navigate('updatepass')
     } 

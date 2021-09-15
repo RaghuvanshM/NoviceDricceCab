@@ -17,9 +17,9 @@ const CabDetail = ({ props }) => {
     const dispatch = useDispatch()
     const isclick = useSelector(getButtonClick)
     const id_driver = useSelector(getdriverId)
-    console.log(id_driver)
+
     const iscabinfo = useSelector(getisCabinfo)
-    console.log(iscabinfo)
+   
     const [type_of_vechile, setTypeofVechile] = useState('')
     const [sheets, setSheets] = useState('')
     const [vechile_rc, setVechile_rc] = useState('')
@@ -31,7 +31,7 @@ const CabDetail = ({ props }) => {
         dispatch(buttonClick())
         dispatch(cabinfo(
             {
-                id_driver:parseInt(id_driver),
+                id_driver: parseInt(id_driver),
                 type_of_vechile,
                 sheets,
                 vechile_rc,

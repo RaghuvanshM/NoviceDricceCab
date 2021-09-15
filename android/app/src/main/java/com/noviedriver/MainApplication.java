@@ -13,6 +13,7 @@ import java.util.List;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.airbnb.android.react.maps.MapsPackage;  
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
           new VectorIconsPackage();
            new GeolocationPackage();
            new MapsPackage()  ;
+            new ReactNativePushNotificationPackage();
           return packages;
         }
 

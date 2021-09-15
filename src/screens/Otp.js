@@ -43,7 +43,7 @@ const OtpScreen = () => {
   };
   const onsubmit = () => {
   
-  //   console.log((otp1+otp2+otp3+otp4)===phonenumber.payload.phonenumber.otp)
+
   //  if(parseInt(otp1+otp2+otp3+otp4)===phonenumber.payload.otp){
      navigation.navigate('registration')
   //  }

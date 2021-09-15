@@ -9,10 +9,10 @@ import Toast from 'react-native-toast-message';
 import { apiFailed, sendOtpPhone } from '../actions';
 
 export const verifyNumber = function* (action) {
-  console.log(action)
+
   try {
     const userDetails = yield call(sendOtp,Apiurl.aadharImage,{...action.payload});
-   console.log(userDetails.data)
+  
     if(userDetails.data.Status==='Success'){
       let data ={response:userDetails.data,payload:action.payload}
     yield put(sendOtpPhone(data))
