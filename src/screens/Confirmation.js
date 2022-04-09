@@ -1,10 +1,12 @@
 import React, { Component, useEffect } from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { phoneAuth } from '../module/actions';
 import Button from '../Components/Button/Button';
 import images from '../Constants/image';
+import BackgroundImage from '../Components/BackgroundImage/BackgroundImage';
+import TextBoxComponent from '../Components/TextInput/TextBox';
 const Confirmation = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -19,31 +21,40 @@ const Confirmation = () => {
     navigation.navigate('loginscreen');
   };
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
-      <View style={{flex:1}}>
-        <Image
-          source={images.confimationiamge}
-          resizeMode="cover"
-          style={{ width:'100%', bottom:0,position:'absolute', alignSelf: 'center' }}
-        />
-      </View>
-      <View style={{ flex: 0.4, marginTop: '2%' }}>
-        <View>
-          <Button
-            title={'SIGN  IN'}
-            textStyle={styles.buttontext}
-            onPress={onSigninPress}
+    <>
+      <StatusBar hidden />
+      <BackgroundImage>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+        >
+          <TextBoxComponent
+            placeholder={"* Enter Email"}
+            onChangeText={(text) => setEmail(text)}
           />
-        </View>
-        <View style={{ marginTop: '2%' }}>
-          <Button
-            title={'SIGN  UP'}
-            textStyle={styles.buttontext}
-            onPress={onSignUpPress}
+          <TextBoxComponent
+            placeholder={"* Enter Password"}
+            onChangeText={(text) => setPassword(text)}
           />
-        </View>
-      </View>
-    </View>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10 }}>
+
+            <Button
+              title={'SIGN  IN'}
+              textStyle={styles.buttontext}
+              onPress={onSigninPress}
+            />
+
+
+            <Button
+              title={'SIGN  UP'}
+              textStyle={styles.buttontext}
+              onPress={onSignUpPress}
+            />
+          </View>
+
+        </ScrollView>
+      </BackgroundImage>
+    </>
   );
 };
 export default Confirmation;
@@ -56,7 +67,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
- 
+
   RegisterText: {
     color: '#4c669f',
     fontSize: 20,
@@ -71,7 +82,7 @@ const styles = StyleSheet.create({
     color: '#34404b',
   },
   buttontext: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'white',
     alignSelf: 'center',
     fontWeight: 'bold',

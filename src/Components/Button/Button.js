@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
-import Colors from '../Colors'
+import React, {Component} from 'react';
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import color from '../../module/utils/color';
 
 export default class Button extends Component {
   constructor(props) {
@@ -10,12 +10,11 @@ export default class Button extends Component {
     return (
       <View style={styles.upperview}>
         <TouchableOpacity
-          style={[styles.btn,this.props.style]}
-          onPress={this.props.onPress}
-        >
-           <Text style={[styles.label, this.props.textStyle]}>
+          style={[styles.btn, this.props.style]}
+          onPress={this.props.onPress}>
+          <Text style={[styles.label, this.props.textStyle]}>
             {this.props.title}
-           </Text>
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -23,21 +22,16 @@ export default class Button extends Component {
 }
 const styles = StyleSheet.create({
   upperview: {
-    borderWidth: 2, 
-    width: '90%', 
-    alignSelf: 'center',
-    padding:1,
-    borderRadius:30,
-    borderColor:Colors.buttoncolor
+    width: '40%',
   },
   btn: {
-    paddingVertical: 12,
-    backgroundColor: Colors.buttoncolor,
-    borderRadius:30
+    paddingVertical: 8,
+    backgroundColor: color.buttoncolor,
+    borderRadius: 15,
   },
   label: {
-    color: Colors.themeColor,
-    textAlign:'center',
+    color: color.themeColor,
+    textAlign: 'center',
     fontSize: 15,
   },
-})
+});

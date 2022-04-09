@@ -6,11 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import Colors from '../Colors';
-import CutomButton from '../Button/Button';
-import Iconlist from '../icon'
-import Icon from 'react-native-vector-icons/Entypo';
 
+import color from '../../module/utils/color';
 const TextBoxComponent = props => {
   return (
     <View style={styles.textinputview}>
@@ -20,23 +17,22 @@ const TextBoxComponent = props => {
         keyboardType={props.keyboardType}
         onFocus={props.onFocus}
         value={props.value}
-        keyboardType={props.keyboardType}
-        maxLength={props.maxLength}
         onChangeText={props.onChangeText}
-        secureTextEntry={props.secureTextEntry}
-        value={props.value}
+        defaultValue={props.defaultValue}
+        autoFocus={props.autoFocus}
+        placeholderTextColor={'#3e3721'}
       />
-      {props.isicon ? (
-        <TouchableOpacity style={{justifyContent: 'center'}}
-        onPress={props.iconPress}
-        >
+      {/* {props.isicon ? (
+        <TouchableOpacity
+          style={{justifyContent: 'center'}}
+          onPress={props.iconPress}>
           {props.icon ? (
             <Icon name={Iconlist.eyecross} size={30} style={{margin: '4%'}} />
           ) : (
             <Icon name={Iconlist.eyeopen} size={30} style={{margin: '4%'}} />
           )}
         </TouchableOpacity>
-      ) : null}
+      ) : null} */}
     </View>
   );
 };
@@ -44,16 +40,13 @@ export default TextBoxComponent;
 
 const styles = StyleSheet.create({
   textinputview: {
-    borderWidth: 2,
+    borderBottomWidth: 2,
     width: '90%',
     alignSelf: 'center',
-    borderColor: Colors.textinputbordercolor,
-    borderRadius: 10,
-    marginBottom: '4%',
-    flexDirection: 'row',
+    borderBottomColor: color.textinputbordercolor,
   },
   textinput: {
     fontSize: 18,
-    width: '89%',
+    width: '100%',
   },
 });
