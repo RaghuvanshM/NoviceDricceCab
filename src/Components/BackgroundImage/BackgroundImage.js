@@ -18,6 +18,7 @@ const BackgroundImage = props => {
           style={styles.logoimg}
           source={images.logoImage}
           resizeMode="contain"
+
         />
         {props.children}
       </View>
@@ -25,6 +26,11 @@ const BackgroundImage = props => {
         style={styles.carimag}
         source={images.horrizontalcar}
         resizeMode="contain"
+        
+        
+        
+        
+        
       />
     </ImageBackground>
   );
@@ -40,5 +46,11 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     marginLeft: 20,
+    marginRight:20,
+    marginRight:20
+    
+    
   },
+  
+  
 });

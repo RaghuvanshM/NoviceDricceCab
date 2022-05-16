@@ -1,3 +1,4 @@
+import { State } from 'react-native-gesture-handler';
 import {createReducer} from 'redux-act';
 
 import { documentButtonClick, profilePhototData, uploddocfaild } from '../actions';
@@ -29,5 +30,8 @@ const initialState = {
     return{
       ...state,
       isclick:false
+    
+      
+      
     }
   })

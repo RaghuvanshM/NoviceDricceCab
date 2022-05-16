@@ -6,7 +6,8 @@ const CabdocComponent =({data})=>{
     console.log(data.uri)
     return(
         <View style={styles.docview}>
-        {data?null:<Icon name="text-document-inverted" size={70} color="black" style={styles.documenticon} />}
+        {data?null:<Icon name="text-document-inverted" 
+        size={70} color="black" style={styles.documenticon} />}
         
         <Image 
          source={{uri:data.uri}}

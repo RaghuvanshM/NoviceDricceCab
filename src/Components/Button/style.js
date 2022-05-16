@@ -8,7 +8,7 @@ export default StyleSheet.create({
  
       paddingVertical: 15,
       borderRadius: 10,
-      shadowColor:'rgba(0,0,0,0.9)',
+      shadowColor:'gba(0,0,0,0.9)r',
       shadowOffset:{width:0,height:0},
       shadowRadius:3,
       shadowOpacity:1,
@@ -16,6 +16,7 @@ export default StyleSheet.create({
     
     },
     label: {
+      
       color: Colors.themeColor,
       textAlign:'center',
       fontSize: 15,

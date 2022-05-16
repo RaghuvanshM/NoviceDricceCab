@@ -123,6 +123,7 @@ user.on(cabinfosuccess, (state,payload) => {
   return {
     ...state,
     issubmit:false,
-    iscabinfo:true
+    iscabinfo:true,
+    profile:true,
   };
 });

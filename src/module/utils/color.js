@@ -25,4 +25,9 @@ export default {
   stripline,
   screentextColor,
   drawerscreentext,
+  drawertext,
+  
+  
+
+  
 };

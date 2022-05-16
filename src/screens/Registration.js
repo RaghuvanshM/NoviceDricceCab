@@ -58,23 +58,23 @@ const Registration = ({ props }) => {
   const onPressSaveButton = async () => {
     navigation.navigate("uploaddoc");
 
-    // dispatch(buttonClick());
-    // dispatch(
-    //   signUpUser({
-    //     name,
-    //     email,
-    //     mobile,
-    //     password,
-    //     address,
-    //     pincode,
-    //     license,
-    //     pan_card,
-    //     bank_name,
-    //     bank_account,
-    //     ifsc_code,
-    //     device_id,
-    //   })
-    // );
+    dispatch(buttonClick());
+    dispatch(
+      signUpUser({
+        name,
+        email,
+        mobile,
+        password,
+        address,
+        pincode,
+        license,
+        pan_card,
+        bank_name,
+        bank_account,
+        ifsc_code,
+        device_id,
+      })
+    );
   };
 
   return (
@@ -124,7 +124,7 @@ const Registration = ({ props }) => {
     //   </View>
     // </View>
     <Fragment>
-      {isclick && (
+      {/* {isclick && (
         <View
           style={{
             position: "absolute",
@@ -137,7 +137,7 @@ const Registration = ({ props }) => {
         >
           <ActivityIndicator size="large" color="#fff" />
         </View>
-      )}
+      )} */}
       <BackgroundImage>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
@@ -185,6 +185,7 @@ const Registration = ({ props }) => {
             <CustomTextInput
               placeholder={"Phone "}
               onChangeText={(text) => setMobile(text)}
+              
               keyboardType={"number-pad"}
               maxLength={10}
               value={mobile}

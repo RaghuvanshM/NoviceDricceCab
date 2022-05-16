@@ -18,6 +18,8 @@ export const cabVideo = function* (action) {
       text1:  'Completed Go to next',
       visibilityTime: 30000,
       position: 'bottom',
+      position: 'top',
+      
     });
     }
     else{
@@ -39,6 +41,7 @@ export const cabVideo = function* (action) {
       text1: e?.response?.data?.message || 'Incorrect email or password!',
       visibilityTime: 30000,
       position: 'bottom',
+   
     });
   }
 };

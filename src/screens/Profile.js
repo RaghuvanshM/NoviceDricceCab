@@ -6,4 +6,4 @@ const Profile =()=>{
         <Text>this is Profle</Text>
     )
 }
-export default Profile
+export default Profile;

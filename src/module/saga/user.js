@@ -28,6 +28,7 @@ export const signIn = function* (action) {
         text1: userDetails.data.response.message || "Something Went Wrong!",
         visibilityTime: 30000,
         position: "bottom",
+        
       });
     }
     // yield put(authUser(userDetails.data.data));

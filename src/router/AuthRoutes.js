@@ -18,11 +18,13 @@ import Profile from '../screens/Profile';
 import VerifyEmail from '../screens/VerifyEmail';
 import EnterCode from '../screens/EnterCode';
 import ResetPassword from '../screens/ResetPassword';
+
+
 const Stack = createStackNavigator();
 function authStack() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="confirmationscreen"
+            <Stack.Navigator initialRouteName="otpscreen"
                 headerMode={'none'}
             >
                 <Stack.Screen name="registration" component={Registration} />
@@ -41,6 +43,9 @@ function authStack() {
                 <Stack.Screen name="verify" component={VerifyEmail} />
                 <Stack.Screen name="enterotp" component={EnterCode} />
                 <Stack.Screen name="updatepass" component={ResetPassword} />
+            
+              
+                
 
 
           

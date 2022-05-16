@@ -1,4 +1,3 @@
-
 import { DocumentUpload } from '../utils/Apis/document';
 import { profilePhototData, profilPhoto } from '../actions';
 import { call, put } from 'redux-saga/effects';
@@ -10,7 +9,8 @@ import Toast from 'react-native-toast-message';
 export const aadharPhoto = function* (action) {
 
   try {
-    const userDetails = yield call(DocumentUpload,Apiurl.aadharImage,{...action.payload});
+    const userDetails = yield call(DocumentUpload,
+      Apiurl.aadharImage,{...action.payload});
 
     if(userDetails.data!==''){
     yield put(profilePhototData())
@@ -40,6 +40,7 @@ export const aadharPhoto = function* (action) {
       text1: e?.response?.data?.message || 'Incorrect email or password!',
       visibilityTime: 30000,
       position: 'bottom',
+      
     });
   }
 };

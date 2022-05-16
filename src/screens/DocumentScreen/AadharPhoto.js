@@ -56,8 +56,9 @@ const DriverLicense = () => {
   const navigation = useNavigation();
   return (
     <Fragment>
-      {isbuttonClick && (
+      {/* {isbuttonClick && (
         <View
+
           style={{
             position: "absolute",
             width: "100%",
@@ -69,7 +70,7 @@ const DriverLicense = () => {
         >
           <ActivityIndicator size="large" color="#fff" />
         </View>
-      )}
+      )} */}
       <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={{ flex: 0.1 }}
@@ -107,6 +108,8 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: 18,
     fontFamily: "OpenSans-Bold",
+    
     alignSelf: "center",
+    
   },
 });

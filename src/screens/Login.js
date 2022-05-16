@@ -175,5 +175,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.resesttTextColor,
     fontFamily: "OpenSans-Bold",
+    fontWeight:'bold'
   },
 });

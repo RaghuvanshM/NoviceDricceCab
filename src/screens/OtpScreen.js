@@ -21,6 +21,7 @@ import images from "../Constants/image";
 import Colors from "../Components/Colors";
 import { mobileNumber } from "../Constants/appConstant";
 import Toast from "react-native-toast-message";
+
 import {
   getApifailed,
   getButtonClick,
@@ -34,7 +35,7 @@ const OtpScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const [phone, setPhone] = useState("7895769455");
+  const [phone, setPhone] = useState("7355163605");
   const [isOtp, setisOtp] = useState(false);
   // useEffect(() => {
   //   dispatch(phoneAuth);
@@ -67,7 +68,7 @@ const OtpScreen = () => {
   };
   return (
     <Fragment>
-      {isclick && (
+      {/* {isclick && (
         <View
           style={{
             position: "absolute",
@@ -80,12 +81,12 @@ const OtpScreen = () => {
         >
           <ActivityIndicator size="large" color="#fff" />
         </View>
-      )}
+      )} */}
       <BackgroundImage>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
         >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{ flex: 0.3 }}
             onPress={() => {
               navigation.goBack();
@@ -96,7 +97,7 @@ const OtpScreen = () => {
               size={30}
               style={{ margin: "4%" }}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
@@ -174,5 +175,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.forgetPassowrdcolor,
     fontFamily: "OpenSans-Bold",
+    
   },
 });

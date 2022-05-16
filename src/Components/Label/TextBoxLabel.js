@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import color from '../../module/utils/color';
 import Colors from '../Colors';
 
 const TextBoxLabel = (props) => {
     return (
         <View style={styles.upperview}>
             <Text style={styles.starttext}>
-                *
+                
             </Text>
             <Text style={styles.labelstyle}>
                 {props.label}
+                
+                
+                
             </Text>
         </View>
+        
     )
 }
 export default TextBoxLabel
@@ -21,11 +26,17 @@ const styles = StyleSheet.create({
     },
     starttext: {
         fontSize: 18,
-        color: Colors.buttoncolor
+        color: Colors.buttoncolor,
+        
+        
     },
     labelstyle: {
         fontSize: 20,
         marginLeft: '1%',
-        marginBottom: '2%'
+        marginBottom: '2%',
+        marginTop:1
+        
+        
+        
     }
 })

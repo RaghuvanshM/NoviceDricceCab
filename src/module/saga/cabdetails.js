@@ -1,4 +1,3 @@
-
 import { signInApi } from '../utils/Apis/user';
 import {cabinfo, cabinfosave,apiFailed, cabinfosuccess } from '../actions';
 import { call, put } from 'redux-saga/effects';
@@ -39,6 +38,7 @@ export const saveCabDetil = function* (action) {
       text1: e?.response?.data?.message || 'Something Went Wrong!',
       visibilityTime: 30000,
       position: 'bottom',
+      
     });
   }
 };

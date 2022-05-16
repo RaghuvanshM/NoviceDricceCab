@@ -34,7 +34,7 @@ const OtpScreen = () => {
         message: "Simple message",
         type: "success",
       });
-      setOTP("");
+      setOtp("");
       navigation.navigate("Registration");
     } else {
       showMessage({
@@ -86,7 +86,8 @@ const OtpScreen = () => {
               <Text style={styles.resendotp}>Resend OTP </Text>
             </TouchableOpacity>
           </View>
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View style={{ justifyContent: "center",
+           alignItems: "center",  }}>
             <CutomButton
               title={"Submit"}
               textStyle={styles.buttontext}
@@ -125,5 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.resesttTextColor,
     fontFamily: "OpenSans-Bold",
+  
   },
+
 });

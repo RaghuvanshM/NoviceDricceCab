@@ -19,6 +19,7 @@ export const signInDriver = function* (action) {
       text1: userDetails.data.response.message || 'Completed Go to next',
       visibilityTime: 3000,
       position: 'bottom',
+      
     });
     }
     else{

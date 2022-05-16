@@ -14,7 +14,9 @@ const DrawerContent = (props) => {
 export default DrawerContent;
 const styles = StyleSheet.create({
     contentext:{
-        fontSize:18
+        fontSize:18,
+    
+        
     
     }
 })

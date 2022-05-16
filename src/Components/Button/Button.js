@@ -5,6 +5,8 @@ import color from "../../module/utils/color";
 export default class Button extends Component {
   constructor(props) {
     super(props);
+    super(props)
+  
   }
   render() {
     return (
@@ -12,6 +14,8 @@ export default class Button extends Component {
         style={[
           styles.upperview,
           this.props.isfullWidh ? { width: "80%" } : null,
+          
+          
         ]}
       >
         <TouchableOpacity
@@ -39,5 +43,6 @@ const styles = StyleSheet.create({
     color: color.themeColor,
     textAlign: "center",
     fontSize: 15,
+    
   },
 });
