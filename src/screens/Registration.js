@@ -20,14 +20,12 @@ import Colors from "../Components/Colors";
 import Iconlist from "../Components/icon";
 import images from "../Constants/image";
 import messaging from "@react-native-firebase/messaging";
-import Toast from "react-native-toast-message";
-import {
-  getButtonClick,
-  getdriverId,
-  getisUserDetail,
-  getUserProfile,
-} from "../module/selectors/user";
+import { signInApi } from "../module/utils/Apis/user";
+import Apiurl from "../module/utils/api-constants";
+
+import { getButtonClick, getisUserDetail } from "../module/selectors/user";
 import BackgroundImage from "../Components/BackgroundImage/BackgroundImage";
+import Toast from "react-native-toast-message";
 const Registration = ({ props }) => {
   const dispatch = useDispatch();
   const isclick = useSelector(getButtonClick);
@@ -58,86 +56,38 @@ const Registration = ({ props }) => {
   const onPressSaveButton = async () => {
     navigation.navigate("uploaddoc");
 
-    // dispatch(buttonClick());
-    // dispatch(
-    //   signUpUser({
-    //     name,
-    //     email,
-    //     mobile,
-    //     password,
-    //     address,
-    //     pincode,
-    //     license,
-    //     pan_card,
-    //     bank_name,
-    //     bank_account,
-    //     ifsc_code,
-    //     device_id,
-    //   })
-    // );
+    try {
+      let data = {
+        name,
+        email,
+        mobile,
+        password,
+        address,
+        pincode,
+        license,
+        pan_card,
+        bank_name,
+        bank_account,
+        ifsc_code,
+        device_id,
+      };
+      console.log(data);
+      let res = await signInApi(Apiurl.ragistration, data);
+      console.log(res);
+      console.log(res.data);
+      Toast.show({
+        type: "error",
+        text1: res?.data?.response?.message || "Something Went Wrong!",
+        visibilityTime: 30000,
+        position: "bottom",
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
-    // <View style={styles.loginview}>
-
-    //   <TouchableOpacity
-    //     onPress={() => {
-    //       navigation.goBack();
-    //     }}>
-    //     <View style={{padding: 10}}>
-    //       <Icon name="arrowleft" size={30} color="black" />
-    //     </View>
-    //   </TouchableOpacity>
-    //   <Text style={{fontSize: 20, alignSelf: 'center', color: '#343a40'}}>
-    //     {' '}
-    //     Member Login{' '}
-    //   </Text>
-    //   <CustomTextInput />
-    //   <View style={styles.loginview}>
-    //     <View style={styles.singletextinput}>
-    //       <TextInput
-    //         label="Email"
-    //         onChangeText={text => {
-    //           setEmail(text);
-    //         }}
-    //       />
-    //     </View>
-
-    //     <View style={styles.singletextinput}>
-    //       <TextInput
-    //         label="Password"
-    //         onChangeText={text => {
-    //           setPassword(text);
-    //         }}
-    //       />
-    //     </View>
-    //     {/* <TouchableOpacity
-    //       onPress={loginButtonClick}
-    //       >
-    //         <LinearGradient
-    //           colors={['#e83e8c', '#e83e8c', '#e83e8c']}
-    //           style={styles.linearGradient}>
-    //           <Text style={styles.buttonText}>Login Now</Text>
-    //         </LinearGradient>
-    //       </TouchableOpacity> *parrentloginiamgetton.Color.Dark}
-    //     />
-    //   </View>
-    // </View>
     <Fragment>
-      {isclick && (
-        <View
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            backgroundColor: "rgba(3,3,3, 0.8)",
-            zIndex: 10,
-          }}
-        >
-          <ActivityIndicator size="large" color="#fff" />
-        </View>
-      )}
       <BackgroundImage>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}

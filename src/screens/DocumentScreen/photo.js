@@ -13,16 +13,12 @@ import Icon from "react-native-vector-icons/AntDesign";
 import CustomButton from "../../Components/Button/Button";
 import { useNavigation } from "@react-navigation/core";
 import ImagePicker from "react-native-image-picker";
-import {
-  documentButtonClick,
-  profilPhoto,
-  uploddocfaild,
-} from "../../module/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { geDocButtonClick, getdriverId } from "../../module/selectors";
+
+import { useDispatch } from "react-redux";
+
+import AsyncStorage from "@react-native-community/async-storage";
+import RNFetchBlob from "rn-fetch-blob";
 import Toast from "react-native-toast-message";
-import { profileImageUpload } from "../../module/saga/profilephoto";
-import { DebugInstructions } from "react-native/Libraries/NewAppScreen";
 
 const options = {
   title: "Profile Picture",
@@ -32,69 +28,55 @@ const options = {
 const Photo = () => {
   const dispatch = useDispatch();
   const [ImageUrl, setImageurl] = useState("");
-  const isbuttonClick = useSelector(geDocButtonClick);
-  const id_driver = useSelector(getdriverId);
-  useEffect(() => {
-    dispatch(uploddocfaild());
-  }, []);
-  console.log(id_driver);
-  const onChoosePhotoClick = () => {
-    dispatch(documentButtonClick());
+  const myfun = () => {
     ImagePicker.showImagePicker(options, (response) => {
+      console.log(response);
       if (response.didCancel) {
-        dispatch(uploddocfaild());
       } else if (response.error) {
-        dispatch(uploddocfaild());
-      } else if (response.customButton) {
-        dispatch(uploddocfaild());
       } else {
         let source = { uri: response.uri };
-        if (
-          response.type === "image/jpeg" ||
-          response.type === "image/jpg" ||
-          response.type === "image/png"
-        ) {
-          console.log(source);
-          setImageurl(source);
-          let imagedata = {
-            name: "profile_picture",
-            filename: response.fileName,
-            type: "image/png",
-            data: response.data,
-          };
-          let id = {
-            name: "id_driver",
-            data: id_driver,
-          };
-        } else {
-          Toast.show({
-            type: "error",
-            text1: "Please Choose Correct Image",
-            visibilityTime: 30000,
-            position: "bottom",
+        setImageurl(source);
+        AsyncStorage.getItem("Loginid").then((token) => {
+          RNFetchBlob.fetch(
+            "POST",
+            "https://novice.jingleinfo.com/novicecabnew/mobileapp/Driver/profil_image",
+            {
+              Authorization: "Bearer access-token",
+              otherHeader: "foo",
+              "Content-Type": "multipart/form-data",
+              "x-api-key": "prabhat@cab",
+            },
+            [
+              {
+                name: "profile_picture",
+                filename: response.fileName,
+                type: "image/png",
+                data: response.data,
+              },
+              { name: "id_driver", data: String(12) },
+            ]
+          ).then((resp) => {
+            Toast.show({
+              type: "success",
+              text1: "Image Upload sucess fully",
+              visibilityTime: 3000,
+              position: "bottom",
+            });
           });
-          dispatch(uploddocfaild());
-        }
+        });
+        // this.setState({
+        //   imageSource: source,
+        //   pic: response.data,
+        //   name: response.fileName,
+        //   isSelect: true,
+        // });
       }
     });
   };
+  const uploadPic = () => {};
   const navigation = useNavigation();
   return (
     <Fragment>
-      {isbuttonClick && (
-        <View
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            backgroundColor: "rgba(3,3,3, 0.8)",
-            zIndex: 10,
-          }}
-        >
-          <ActivityIndicator size="large" color="#fff" />
-        </View>
-      )}
       <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={{ flex: 0.1 }}
@@ -111,7 +93,7 @@ const Photo = () => {
             <CustomButton
               title={"Choose/Take Photo"}
               textStyle={styles.buttontext}
-              onPress={() => onChoosePhotoClick()}
+              onPress={() => myfun()}
               isfullWidh={true}
             />
           </View>

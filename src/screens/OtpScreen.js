@@ -34,8 +34,11 @@ const OtpScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const [phone, setPhone] = useState("7895769455");
+  const [phone, setPhone] = useState("");
   const [isOtp, setisOtp] = useState(false);
+  const [confirm, setConfirm] = useState(null);
+  const [code, setCode] = useState("");
+
   // useEffect(() => {
   //   dispatch(phoneAuth);
   // }, [dispatch]);
@@ -47,97 +50,160 @@ const OtpScreen = () => {
     return mobileNumber.test(phone);
   };
   const sendOtpbuttoncall = async () => {
-    if (validatePhone()) {
-      // const confirmation = await auth().signInWithPhoneNumber(`+91 ${phone}`);
-      // console.log(confirmation)
-      if (apifalied) {
-        navigation.navigate("otpverificatonscreen");
+    navigation.navigate("registration");
+
+    try {
+      if (validatePhone()) {
+        const confirmation = await auth().signInWithPhoneNumber(`+91 ${phone}`);
+        console.log(confirmation);
+        setConfirm(confirmation);
       } else {
-        navigation.navigate("otpverificatonscreen");
-        setPhone("");
+        Toast.show({
+          type: "error",
+          text1: "Enter Correct Mobile Number",
+          visibilityTime: 3000,
+          position: "bottom",
+        });
       }
-    } else {
-      Toast.show({
-        type: "error",
-        text1: "Enter Correct Mobile Number",
-        visibilityTime: 3000,
-        position: "bottom",
-      });
+    } catch (error) {
+      alert(error);
     }
   };
-  return (
-    <Fragment>
-      {isclick && (
-        <View
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            backgroundColor: "rgba(3,3,3, 0.8)",
-            zIndex: 10,
-          }}
-        >
-          <ActivityIndicator size="large" color="#fff" />
-        </View>
-      )}
-      <BackgroundImage>
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
-        >
-          <TouchableOpacity
-            style={{ flex: 0.3 }}
-            onPress={() => {
-              navigation.goBack();
-            }}
+  async function confirmCode() {
+    navigation.navigate("registration");
+
+    try {
+      let a = await confirm.confirm(code);
+      setLoading(false);
+      console.log(a);
+    } catch (error) {
+      console.log(error);
+      //  alert("Invalid code.");
+    }
+  }
+  if (!confirm) {
+    return (
+      <Fragment>
+        <BackgroundImage>
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
           >
-            <Icon
-              name={Iconlist.arrowleft}
-              size={30}
-              style={{ margin: "4%" }}
-            />
-          </TouchableOpacity>
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
-            <Image
-              source={images.mobilephone}
-              resizeMode="contain"
-              style={{ height: "40%", width: "90%" }}
-            />
-            <Text style={styles.mobiletext}>Enter Your Mobile Number</Text>
-            <Text style={styles.otpText}>
-              We will send you a OTP Verification
-            </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <View style={{ width: "90%", alignSelf: "center" }}>
-              <CustomTextBoxLabel label={"Enter Mobile Number"} />
-            </View>
-            <CustomTextInput
-              placeholder={"Phone Number"}
-              keyboardType={"number-pad"}
-              maxLength={10}
-              onChangeText={(text) => setPhone(text)}
-              value={phone}
-            />
             <View
               style={{
+                flex: 1,
                 justifyContent: "center",
-                marginTop: 20,
                 alignItems: "center",
               }}
             >
-              <CutomButton
-                title={"Send"}
-                textStyle={styles.buttontext}
-                onPress={sendOtpbuttoncall}
+              <Image
+                source={images.mobilephone}
+                resizeMode="contain"
+                style={{ height: "40%", width: "90%" }}
               />
+              <Text style={styles.mobiletext}>Enter Your Mobile Number</Text>
+              <Text style={styles.otpText}>
+                We will send you a OTP Verification
+              </Text>
             </View>
+            <View style={{ flex: 1 }}>
+              <View style={{ width: "90%", alignSelf: "center" }}>
+                <CustomTextBoxLabel label={"Enter Mobile Number"} />
+              </View>
+              <CustomTextInput
+                placeholder={"Phone Number"}
+                keyboardType={"number-pad"}
+                maxLength={10}
+                onChangeText={(text) => setPhone(text)}
+                value={phone}
+              />
+              <View
+                style={{
+                  justifyContent: "center",
+                  marginTop: 20,
+                  alignItems: "center",
+                }}
+              >
+                <CutomButton
+                  title={"Send"}
+                  textStyle={styles.buttontext}
+                  onPress={sendOtpbuttoncall}
+                />
+              </View>
+            </View>
+          </ScrollView>
+        </BackgroundImage>
+      </Fragment>
+    );
+  } else {
+    return (
+      <BackgroundImage>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          enableOnAndroid={true}
+        >
+          <PhoneIMage />
+          <CustomTextInput
+            placeholder={"* Enter Otp"}
+            keyboardType={"number-pad"}
+            onChangeText={(text) => setCode(text)}
+            autoFocus={true}
+          />
+          <View style={styles.btnContainer}>
+            <CutomButton
+              title={"Verify"}
+              textStyle={styles.buttontext}
+              onPress={confirmCode}
+            />
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              margin: "5%",
+            }}
+          >
+            <Text style={styles.otpText}>Didn't receive the OTP ?</Text>
+            <TouchableOpacity onPress={validatePhone}>
+              <Text style={styles.resendotp}>Resend OTP </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </BackgroundImage>
-    </Fragment>
+    );
+  }
+};
+const PhoneIMage = () => {
+  return (
+    <>
+      <Image
+        source={images.mobilenew}
+        resizeMode="contain"
+        style={{ height: "30%", zIndex: 20, width: "30%", alignSelf: "center" }}
+      />
+      <View
+        style={{
+          position: "absolute",
+          right: -85,
+          top: 80,
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <CarIMage />
+      </View>
+    </>
+  );
+};
+const CarIMage = () => {
+  return (
+    <Image
+      source={images.carvertical}
+      resizeMode="contain"
+      style={{ height: "30%", width: "30%", alignSelf: "center" }}
+    />
   );
 };
 export default OtpScreen;
@@ -146,6 +212,12 @@ const styles = StyleSheet.create({
     width: "95%",
     alignSelf: "center",
     marginTop: "3%",
+  },
+  btnContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
   },
   textlabel: {
     fontSize: 18,

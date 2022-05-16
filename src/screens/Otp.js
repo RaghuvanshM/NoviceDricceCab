@@ -5,12 +5,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator,
   Image,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
-import { getPhoneNumber, getPhoneNumberdata } from "../module/selectors";
+import { getPhoneNumberdata } from "../module/selectors";
 import { useSelector } from "react-redux";
 import Iconlist from "../Components/icon";
 import Allimage from "../Constants/image";
